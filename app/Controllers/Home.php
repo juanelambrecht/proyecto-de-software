@@ -9,4 +9,5 @@ class Home extends BaseController
         return redirect()->to('welcome_message');
         //edit por mati v4
     }
+    //mati deja de tocar la concha de tu madre
 }
