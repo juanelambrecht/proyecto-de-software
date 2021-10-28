@@ -7,5 +7,6 @@ class Home extends BaseController
     public function index()
     {
         return redirect()->to('welcome_message');
+        //asd
     }
 }
