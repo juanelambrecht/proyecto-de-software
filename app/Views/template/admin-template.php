@@ -190,7 +190,7 @@ $nav_crear = false;
     </div>
     <!-- /.content-wrapper -->
     <footer class="main-footer">
-      <strong>Copyright &copy; 2020-2021 <a href="">APP Estacionamiento</a>.</strong>
+      <strong>Copyright &copy; 2020-2021 <a href="">APP De los pibes</a>.</strong>
       Todos los derechos reservados.
       <div class="float-right d-none d-sm-inline-block">
         <b>Version</b> 3.1.0

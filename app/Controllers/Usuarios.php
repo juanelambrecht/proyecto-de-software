@@ -100,6 +100,7 @@ class Usuarios extends BaseController
             'email' => $this->request->getVar('email'),
             'apellido' => $this->request->getVar('apellido'),
             'username' => $this->request->getVar('usuario'),
+            // 'contraseña' => $this->request->getVar('contraseña'),
             'dni' => $this->request->getVar('dni'),
             'fecha_nacimiento' => $this->request->getVar('fecha_nacimiento'),
             'id_rol' => $this->request->getVar('rol')
@@ -109,6 +110,7 @@ class Usuarios extends BaseController
         $usuario->update($id, $datos);
 
         return $this->response->redirect(site_url('../listar'));
+        // Aca miren la ruta que deberia ir despues del editar
     }
 
 
@@ -120,12 +122,14 @@ class Usuarios extends BaseController
 
     public function autenticate()
     {
+        // tomar los datos de login
         $data = $this->request->getPost();
 
         $usuario = new Usuario();
-
+        //Validar con la BD ususario y pass.
         $result = $usuario->validUser($data);
-
+        // print_r("entro a autenticate");
+        //Redireccionar segun resultado de validación.
         if ($result) {
             $sessData = array(
                 'username' => $result[0]->username,
@@ -166,5 +170,13 @@ class Usuarios extends BaseController
         $usuario->update($id, $data);
         return $this->response->redirect(site_url('/listar'));
 
+        // $data = array(
+        //     'yourfieldname' => value,
+        //     'name' => $name,
+        //     'date' => $date
+        // );
+
+        // $this->db->where('yourfieldname', yourfieldvalue);
+        // $this->db->update('yourtablename', $data);
     }
 }

@@ -1,9 +1,11 @@
-<?php 
+<?php
+
 namespace App\Models;
 
 use CodeIgniter\Model;
 
-class Usuario extends Model{
+class Usuario extends Model
+{
     protected $table      = 'usuarios';
     protected $primaryKey = 'id';
 
@@ -13,20 +15,18 @@ class Usuario extends Model{
     protected $useSoftDeletes = false;
 
     protected $useTimestamps = false;
-    protected $allowedFields= ['nombre','apellido','username','contraseña','email','dni','fecha_nacimiento','id_rol'];
+    protected $allowedFields = ['nombre', 'apellido', 'username', 'contraseña', 'email', 'dni', 'fecha_nacimiento', 'id_rol'];
 
-    public function validUser($data) {
-        $this->where('username',$data['username']);
-        $this->where('contraseña',$data['pass']);
+    public function validUser($data)
+    {
+        $this->where('username', $data['username']);
+        $this->where('contraseña', $data['pass']);
 
-        
         $query = $this->get(1);
-
+        // edit on web
         if ($query->getResult())
             return $query->getResult();
-        else 
+        else
             return false;
-        
     }
-
 }
