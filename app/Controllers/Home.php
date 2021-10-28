@@ -4,6 +4,10 @@ namespace App\Controllers;
 
 class Home extends BaseController
 {
+
+
+
+    // asd
     public function index()
     {
         //lalaa
