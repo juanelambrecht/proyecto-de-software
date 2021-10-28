@@ -35,7 +35,7 @@ class Database extends Config
         'hostname' => 'localhost',
         'username' => 'root',
         'password' => '',
-        'database' => 'proyecto_gdl',
+        'database' => 'usuarios',
         'DBDriver' => 'MySQLi',
         'DBPrefix' => '',
         'pConnect' => false,

@@ -100,7 +100,7 @@ class Usuarios extends BaseController
             'email' => $this->request->getVar('email'),
             'apellido' => $this->request->getVar('apellido'),
             'username' => $this->request->getVar('usuario'),
-            // 'contraseña' => $this->request->getVar('contraseña'),
+            'contraseña' => $this->request->getVar('contraseña'),
             'dni' => $this->request->getVar('dni'),
             'fecha_nacimiento' => $this->request->getVar('fecha_nacimiento'),
             'id_rol' => $this->request->getVar('rol')
