@@ -53,13 +53,10 @@ if (file_exists(APPPATH . 'Config/' . ENVIRONMENT . '/Routes.php')) {
 $routes->get('listar', 'Usuarios::index');
 $routes->get('login', 'Usuarios::login');
 $routes->get('crear', 'Usuarios::crear');
-
 $routes->get('venderEstadiaAdmin', 'Usuarios::venderEstadia');
 $routes->get('consultarPrecio', 'Usuarios::consultarPrecio');
-
 $routes->get('venderEstadia', 'Vendedor::venderEstadia');
 $routes->get('consultarPrecio', 'Vendedor::consultarPrecio');
-
 $routes->get('homeCliente', 'Usuarios::homeCliente');
 $routes->get('homeInspector', 'Usuarios::homeInspector');
 $routes->get('homeVendedor', 'Usuarios::homeVendedor');
