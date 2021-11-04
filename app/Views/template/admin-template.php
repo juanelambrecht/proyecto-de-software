@@ -1,5 +1,7 @@
-<?php $nav_listado = false;
+<?php
+$nav_listado = false;
 $nav_crear = false;
+$nav_venderEstadia = false;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -137,7 +139,6 @@ $nav_crear = false;
             <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
             <li class="nav-item menu-open">
-
               <a href="./listar" class="nav-link <?php if ($nav_listado) echo "active"; ?>">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Listado Usuarios</p>
@@ -177,6 +178,9 @@ $nav_crear = false;
                   Consulta Estación
 
                 </p>
+              <a href="./venderEstadia" class="nav-link <?php if ($nav_venderEstadia) echo "active"; ?>">
+                <i class="far fa-circle nav-icon"></i>
+                <p>Vender Estadia</p>
               </a>
             </li>
             

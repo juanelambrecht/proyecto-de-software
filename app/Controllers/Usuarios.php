@@ -2,9 +2,15 @@
 
 namespace App\Controllers;
 
+use App\Models\Estadia;
 use CodeIgniter\Controller;
 use App\Models\Usuario;
 use App\Models\Rol;
+use App\Models\Zona;
+use DateTime;
+use DateInterval;
+use CodeIgniter\I18n\Time;
+use App\Controllers\strtotime;
 
 class Usuarios extends BaseController
 {
@@ -53,11 +59,50 @@ class Usuarios extends BaseController
         return view('usuarios/crear', $datos);
     }
 
+    public function venderEstadia()
+    {
+        $zona = new Zona();
+        $datos['zonas'] = $zona->orderBy('id', 'ASC')->findAll();
+        return view('usuarios/venderEstadia', $datos);
+    }
+
+    public function venderNuevaEstadia()
+    {
+        $db = \Config\Database::connect();
+        // Get user session ID
+        $userSessionID = session()->get('id');
+        // Creo la estadia
+        $estadia = new Estadia();
+        $now = date('Y-m-d');
+        $datos = [
+            'user_id' => $userSessionID,
+            'patente' => $this->request->getVar('patente'),
+            'fecha' => $now,
+            'hora_inicio' => $this->request->getVar('hora_inicio'),
+            'hora_fin' => $this->request->getVar('hora_fin'),
+            // 'pesosTotal' => 0,
+            'zona_id' => $this->request->getVar('zona')
+        ];
+        $horaInicio = strtotime($datos['hora_inicio']);
+        $horaFin = strtotime($datos['hora_fin']);
+        // Calculo el tiempo en horas, redondeando para arriba
+        $hrs = round((($horaFin - $horaInicio) / 60) / 60, 0);
+        // Busco el precio de la zona 
+        $zona = new Zona();
+        $precioHoraZona = $zona->where('id', $datos['zona_id'])->first();
+        // Calculo el precio a pagar
+        $pesosTotal = ($precioHoraZona['costo_horario'] * $hrs);
+        // Inserto el nuevo precio 
+        $newData = array_merge($datos, array("pesosTotal" => $pesosTotal));
+        // $estadia->insert($datos1);
+        $db->table('estadias')->insert($newData);
+        return $this->response->redirect(site_url('/venderEstadia'));
+    }
+
+
     public function guardar()
     {
-
         $usuario = new Usuario();
-
         $datos = [
             'nombre' => $this->request->getVar('nombre'),
             'email' => $this->request->getVar('email'),
@@ -68,10 +113,7 @@ class Usuarios extends BaseController
             'contraseña' => $this->request->getVar('contraseña'),
             'id_rol' => $this->request->getVar('rol')
         ];
-
-
         $usuario->insert($datos);
-
         return $this->response->redirect(site_url('/listar'));
     }
 
@@ -85,35 +127,29 @@ class Usuarios extends BaseController
 
     public function editar($id = null)
     {
-
         $usuario = new Usuario();
         $rol = new Rol();
         $datos['roles'] = $rol->orderBy('id', 'ASC')->findAll();
         $datos['usuario'] = $usuario->where('id', $id)->first();
-
         return view('usuarios/editar', $datos);
     }
 
     public function actualizar()
     {
         $usuario = new Usuario();
-
         $datos = [
             'nombre' => $this->request->getVar('nombre'),
             'email' => $this->request->getVar('email'),
             'apellido' => $this->request->getVar('apellido'),
             'username' => $this->request->getVar('usuario'),
-           // 'contraseña' => $this->request->getVar('contraseña'),
+            // 'contraseña' => $this->request->getVar('contraseña'),
             'dni' => $this->request->getVar('dni'),
             'fecha_nacimiento' => $this->request->getVar('fecha_nacimiento'),
             'id_rol' => $this->request->getVar('rol')
         ];
-
         $id = $this->request->getVar('id');
         $usuario->update($id, $datos);
-
         return $this->response->redirect(site_url('../listar'));
-        // Aca miren la ruta que deberia ir despues del editar
     }
 
 
@@ -127,19 +163,17 @@ class Usuarios extends BaseController
     {
         // tomar los datos de login
         $data = $this->request->getPost();
-
         $usuario = new Usuario();
         //Validar con la BD ususario y pass.
         $result = $usuario->validUser($data);
-        // print_r("entro a autenticate");
         //Redireccionar segun resultado de validación.
         if ($result) {
             $sessData = array(
+                'id' => $result[0]->id,
                 'username' => $result[0]->username,
                 'role' => $result[0]->id_rol,
                 'isLoggedIn' => true
             );
-
             session()->set($sessData);
             if ($result[0]->id_rol == 1) {
                 return redirect()->to('/listar');
@@ -172,14 +206,24 @@ class Usuarios extends BaseController
         $data = ['contraseña' => '123456'];
         $usuario->update($id, $data);
         return $this->response->redirect(site_url('/listar'));
+    }
 
-        // $data = array(
-        //     'yourfieldname' => value,
-        //     'name' => $name,
-        //     'date' => $date
-        // );
-
-        // $this->db->where('yourfieldname', yourfieldvalue);
-        // $this->db->update('yourtablename', $data);
+    public function consultarPrecio()
+    {
+        $datos = [
+            'hora_inicio' => $this->request->getVar('hora_inicio'),
+            'hora_fin' => $this->request->getVar('hora_fin'),
+            'zona_id' => $this->request->getVar('zona')
+        ];
+        $horaInicio = strtotime($datos['hora_inicio']);
+        $horaFin = strtotime($datos['hora_fin']);
+        // Calculo el tiempo en horas, redondeando para arriba
+        $hrs = round((($horaFin - $horaInicio) / 60) / 60, 0);
+        // Busco el precio de la zona 
+        $zona = new Zona();
+        $precioHoraZona = $zona->where('id', $datos['zona_id'])->first();
+        // Calculo el precio a pagar
+        $pesosTotal = ($precioHoraZona['costo_horario'] * $hrs);
+        return $pesosTotal;
     }
 }
