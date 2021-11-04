@@ -18,7 +18,7 @@
             </div>
             <div class="mb-3">
                 <label for="marca" class="form-label">Marca </label>
-                <input type="text" class="form-control" name="modelo" required>
+                <input type="text" class="form-control" name="marca" required>
             </div>
             <div class="mb-3">
                 <label for="modelo" class="form-label">Modelo</label>

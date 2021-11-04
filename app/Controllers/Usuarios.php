@@ -239,7 +239,7 @@ class Usuarios extends BaseController
 
     public function altaNuevoVehiculo()
     {
-        $db = \Config\Database::connect();
+       // $db = \Config\Database::connect();
         $vehiculo = new Vehiculo();
         $datos = [
             'patente' => $this->request->getVar('patente'),
