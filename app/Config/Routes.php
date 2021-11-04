@@ -68,10 +68,16 @@ $routes->get('editar/(:num)', 'Usuarios::editar/$1');
 $routes->get('resetPass/(:num)', 'Usuarios::resetPass/$1');
 $routes->get('consultaEstacionamiento', 'Inspectores::listarEstacionamiento');
 $routes->get('consultaEstacionamientoAdmin', 'Usuarios::listarEstacionamiento');
-
+$routes->get('altaVehiculo', 'Usuarios::altaVehiculo/$1');
 
 $routes->post('guardar', 'Usuarios::guardar');
 $routes->post('actualizar', 'Usuarios::actualizar');
+<<<<<<< HEAD
+$routes->post('venderNuevaEstadia', 'Usuarios::venderNuevaEstadia');
+$routes->post('altaNuevoVehiculo', 'Usuarios::altaNuevoVehiculo');
+
+=======
 
 $routes->post('venderNuevaEstadiaAdmin', 'Usuarios::venderNuevaEstadia');
 $routes->post('venderNuevaEstadia', 'Vendedor::venderNuevaEstadia');
+>>>>>>> a547ad77af357c300187a9d0529cc22be6285c31

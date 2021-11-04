@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\Estadia;
+use App\Models\Vehiculo;
 use CodeIgniter\Controller;
 use App\Models\Usuario;
 use App\Models\Rol;
@@ -228,5 +229,27 @@ class Usuarios extends BaseController
         // Calculo el precio a pagar
         $pesosTotal = ($precioHoraZona['costo_horario'] * $hrs);
         return $pesosTotal;
+    }
+
+    public function altaVehiculo($id = null)
+    {
+        
+        return view('usuarios/altaVehiculo');
+    }
+
+    public function altaNuevoVehiculo()
+    {
+        $db = \Config\Database::connect();
+        $vehiculo = new Vehiculo();
+        $datos = [
+            'patente' => $this->request->getVar('patente'),
+            'marca' => $this->request->getVar('marca'),
+            'modelo' => $this->request->getVar('modelo'),
+            'cliente_id' =>  $userSessionID = session()->get('id')
+        ];
+       
+        $vehiculo->insert($datos);
+       //$db->table('vehiculos')->insert($datos);
+       return $this->response->redirect(site_url('/homeCliente'));
     }
 }
