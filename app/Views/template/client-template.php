@@ -134,7 +134,9 @@
             <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
             <li class="nav-item menu-open">
+
               <a href="./homeCliente" class="nav-link ">
+
                 <i class="far fa-circle nav-icon"></i>
                 <p> Inicio Cliente</p>
               </a>
