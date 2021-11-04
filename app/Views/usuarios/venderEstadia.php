@@ -1,5 +1,4 @@
-<?= $this->extend('template/admin-template');
-$nav_venderEstadia = true; ?>
+<?= $this->extend('template/admin-template'); ?>
 <?= $this->section('content'); ?>
 
 <div class="row justify-content-md-center">

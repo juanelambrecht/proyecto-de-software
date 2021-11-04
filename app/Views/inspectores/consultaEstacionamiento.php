@@ -1,9 +1,8 @@
-<?=$this->extend('template/inspector-template');
- $nav_estacionamiento=true;?>
-<?=$this->section('content');?>
+<?= $this->extend('template/inspector-template'); ?>
+<?= $this->section('content'); ?>
 
 <p>asdasd</p>
 
 
 
-<?=$this->endsection('content');?>
+<?= $this->endsection('content'); ?>

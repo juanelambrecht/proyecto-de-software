@@ -1,6 +1,3 @@
-<?php $nav_listado = false;
-$nav_crear = false;
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -147,7 +144,7 @@ $nav_crear = false;
               <a href="./crear" class="nav-link <?php if ($nav_crear) echo "active"; ?>">
                 <i class="nav-icon fas fa-users"></i>
                 <p>
-                  Alta Vehiculo 
+                  Alta Vehiculo
                 </p>
               </a>
             <li class="nav-item">
@@ -164,12 +161,12 @@ $nav_crear = false;
               <a href="pages/widgets.html" class="nav-link">
                 <i class="nav-icon fas fa-copy"></i>
                 <p>
-                 Administrar Perfil
+                  Administrar Perfil
 
                 </p>
               </a>
             </li>
-          
+
         </nav>
         <!-- /.sidebar-menu -->
       </div>

@@ -1,8 +1,3 @@
-<?php
-$nav_listado = false;
-$nav_crear = false;
-$nav_venderEstadia = false;
-?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -138,18 +133,18 @@ $nav_venderEstadia = false;
           <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
             <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-            
+
             <li class="nav-item">
-              <a href="./consultaEstacionamiento" class="nav-link" <?php if ($nav_estacionamiento) echo "active"; ?>>
+              <a href="./consultaEstacionamiento" class="nav-link">
                 <i class="nav-icon fas fa-car"></i>
                 <p>
                   Consulta Estación
 
                 </p>
-            </a>
-              
-            
-        
+              </a>
+
+
+
 
         </nav>
         <!-- /.sidebar-menu -->
