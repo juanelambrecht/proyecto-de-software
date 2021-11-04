@@ -1,9 +1,9 @@
-<?= $this->extend('template/admin-template'); ?>
+<?= $this->extend('template/vendedor-template'); ?>
 <?= $this->section('content'); ?>
 
 <div class="row justify-content-md-center">
     <div class="col-md-8">
-        <form class="was-validated" action="<?= site_url('/venderNuevaEstadiaAdmin') ?>" method="post">
+        <form class="was-validated" action="<?= site_url('vendedor/venderNuevaEstadia') ?>" method="post">
 
             <div class="mb-3">
                 <label for="usuario" class="form-label">Patente </label>
@@ -55,8 +55,6 @@
     }
 
     function getPrice() {
-        // var $total = '<?php site_url('/consultarPrecio') ?>';
-        // return $total;
         return 10;
     }
 </script>

@@ -135,13 +135,21 @@
                with font-awesome or any other icon font library -->
             <li class="nav-item menu-open">
 
+<<<<<<< HEAD
               <a href="./homeCliente" class="nav-link ">
+=======
+              <a href="./listar" class="nav-link">
+>>>>>>> a547ad77af357c300187a9d0529cc22be6285c31
                 <i class="far fa-circle nav-icon"></i>
                 <p> Inicio Cliente</p>
               </a>
             </li>
             <li class="nav-item">
+<<<<<<< HEAD
               <a href="./altaVehiculo" class="nav-link">
+=======
+              <a href="./crear" class="nav-link ">
+>>>>>>> a547ad77af357c300187a9d0529cc22be6285c31
                 <i class="nav-icon fas fa-users"></i>
                 <p>
                   Alta Vehiculo
@@ -162,7 +170,6 @@
                 <i class="nav-icon fas fa-copy"></i>
                 <p>
                   Administrar Perfil
-
                 </p>
               </a>
             </li>

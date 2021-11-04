@@ -47,7 +47,7 @@ class Usuarios extends BaseController
         $datos = [];
         return view('usuarios/homeVendedor', $datos);
     }
-    
+
     public function crear()
     {
         $rol = new Rol();
@@ -95,9 +95,9 @@ class Usuarios extends BaseController
         $pesosTotal = ($precioHoraZona['costo_horario'] * $hrs);
         // Inserto el nuevo precio 
         $newData = array_merge($datos, array("pesosTotal" => $pesosTotal));
-        // $estadia->insert($datos1);
+        // $estadia->insert($newData);
         $db->table('estadias')->insert($newData);
-        return $this->response->redirect(site_url('/venderEstadia'));
+        return $this->response->redirect(site_url('/venderEstadiaAdmin'));
     }
 
 

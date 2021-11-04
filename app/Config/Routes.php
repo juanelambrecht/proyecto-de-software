@@ -53,8 +53,13 @@ if (file_exists(APPPATH . 'Config/' . ENVIRONMENT . '/Routes.php')) {
 $routes->get('listar', 'Usuarios::index');
 $routes->get('login', 'Usuarios::login');
 $routes->get('crear', 'Usuarios::crear');
-$routes->get('venderEstadia', 'Usuarios::venderEstadia');
+
+$routes->get('venderEstadiaAdmin', 'Usuarios::venderEstadia');
 $routes->get('consultarPrecio', 'Usuarios::consultarPrecio');
+
+$routes->get('venderEstadia', 'Vendedor::venderEstadia');
+$routes->get('consultarPrecio', 'Vendedor::consultarPrecio');
+
 $routes->get('homeCliente', 'Usuarios::homeCliente');
 $routes->get('homeInspector', 'Usuarios::homeInspector');
 $routes->get('homeVendedor', 'Usuarios::homeVendedor');
@@ -67,6 +72,12 @@ $routes->get('altaVehiculo', 'Usuarios::altaVehiculo/$1');
 
 $routes->post('guardar', 'Usuarios::guardar');
 $routes->post('actualizar', 'Usuarios::actualizar');
+<<<<<<< HEAD
 $routes->post('venderNuevaEstadia', 'Usuarios::venderNuevaEstadia');
 $routes->post('altaNuevoVehiculo', 'Usuarios::altaNuevoVehiculo');
 
+=======
+
+$routes->post('venderNuevaEstadiaAdmin', 'Usuarios::venderNuevaEstadia');
+$routes->post('venderNuevaEstadia', 'Vendedor::venderNuevaEstadia');
+>>>>>>> a547ad77af357c300187a9d0529cc22be6285c31
