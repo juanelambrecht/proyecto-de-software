@@ -135,13 +135,13 @@
                with font-awesome or any other icon font library -->
             <li class="nav-item menu-open">
 
-              <a href="./listar" class="nav-link <?php if ($nav_listado) echo "active"; ?>">
+              <a href="./listar" class="nav-link">
                 <i class="far fa-circle nav-icon"></i>
                 <p>Pantalla Inicio</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="./crear" class="nav-link <?php if ($nav_crear) echo "active"; ?>">
+              <a href="./crear" class="nav-link ">
                 <i class="nav-icon fas fa-users"></i>
                 <p>
                   Alta Vehiculo
@@ -162,7 +162,6 @@
                 <i class="nav-icon fas fa-copy"></i>
                 <p>
                   Administrar Perfil
-
                 </p>
               </a>
             </li>
