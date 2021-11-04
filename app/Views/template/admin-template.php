@@ -161,14 +161,25 @@ $nav_crear = false;
 
             </li>
             <li class="nav-item">
-              <a href="pages/widgets.html" class="nav-link">
-                <i class="nav-icon fas fa-car"></i>
+              <a href="pages/calendar.html" class="nav-link">
+                <i class="nav-icon far fa-calendar-alt"></i>
                 <p>
                   Vehiculos Estacionados
+                  <span class="badge badge-info right">2</span>
+                </p>
+              </a>
+
+            </li>
+            <li class="nav-item">
+              <a href="./consultaEstacionamiento" class="nav-link" <?php if ($nav_estacionamiento) echo "active"; ?>>
+                <i class="nav-icon fas fa-car"></i>
+                <p>
+                  Consulta Estación
 
                 </p>
               </a>
             </li>
+            
             <li class="nav-item">
               <a href="#" class="nav-link">
                 <i class="nav-icon fas fa-copy"></i>

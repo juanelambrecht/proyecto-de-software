@@ -21,8 +21,8 @@ class RoleValidationFilter implements FilterInterface
     );
     // 1 => Admin, 2=>Inspector, 3=>Vendedor, 4=>Cliente
     public $rol_permisos = array(
-        '1' => array('usuarios', 'actualizar', 'guardar', 'listar', 'editar', 'crear', 'borrar', 'resetPass'),
-        '2' => array('homeInspector', 'usuarios'),
+        '1' => array('usuarios', 'actualizar', 'guardar', 'listar', 'editar', 'crear', 'borrar', 'resetPass','consultaEstacionamiento'),
+        '2' => array('homeInspector', 'usuarios','consultaEstacionamiento'),
         '3' => array('homeVendedor', 'usuarios'),
         '4' => array('homeCliente', 'usuarios'),
     );

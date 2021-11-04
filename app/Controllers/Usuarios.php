@@ -40,10 +40,13 @@ class Usuarios extends BaseController
         $datos = [];
         return view('usuarios/homeVendedor', $datos);
     }
-
+    public function consultaEstacionamiento()
+    {
+        $datos = [];
+        return view('usuarios/consultaEstacionamiento', $datos);
+    }
     public function crear()
     {
-
         $rol = new Rol();
         $datos['roles'] = $rol->orderBy('id', 'ASC')->findAll();
 

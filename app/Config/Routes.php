@@ -56,6 +56,7 @@ $routes->get('crear', 'Usuarios::crear');
 $routes->get('homeCliente', 'Usuarios::homeCliente');
 $routes->get('homeInspector', 'Usuarios::homeInspector');
 $routes->get('homeVendedor', 'Usuarios::homeVendedor');
+$routes->get('consultaEstacionamiento', 'Estacionamientos::consultaEstacionamiento');
 $routes->get('borrar/(:num)', 'Usuarios::borrar/$1');
 $routes->get('editar/(:num)', 'Usuarios::editar/$1');
 $routes->get('resetPass/(:num)', 'Usuarios::resetPass/$1');
