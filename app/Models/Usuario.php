@@ -8,12 +8,9 @@ class Usuario extends Model
 {
     protected $table      = 'usuarios';
     protected $primaryKey = 'id';
-
     protected $useAutoIncrement = true;
-
     protected $returnType     = 'App\Entities\User';
     protected $useSoftDeletes = false;
-
     protected $useTimestamps = false;
     protected $allowedFields = [
         'id',
