@@ -1,6 +1,6 @@
 <?= $this->extend('template/client-template');?>
 <?= $this->section('content'); ?>
-
+//alta
 <div class="row justify-content-md-center">
     <div class="col-md-8">
         <form class="was-validated" action="<?= site_url('/altaNuevoVehiculo') ?>" method="post">
