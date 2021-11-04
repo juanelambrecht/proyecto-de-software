@@ -239,7 +239,7 @@ class Usuarios extends BaseController
 
     public function altaNuevoVehiculo()
     {
-       // $db = \Config\Database::connect();
+        $db = \Config\Database::connect();
         $vehiculo = new Vehiculo();
         $datos = [
             'patente' => $this->request->getVar('patente'),
@@ -247,9 +247,8 @@ class Usuarios extends BaseController
             'modelo' => $this->request->getVar('modelo'),
             'cliente_id' =>  $userSessionID = session()->get('id')
         ];
-       
-        $vehiculo->insert($datos);
-       //$db->table('vehiculos')->insert($datos);
+      //  $vehiculo->insert($datos);
+       $db->table('vehiculos')->insert($datos);
        return $this->response->redirect(site_url('/homeCliente'));
     }
 }
