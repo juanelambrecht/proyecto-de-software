@@ -72,12 +72,6 @@ $routes->get('altaVehiculo', 'Usuarios::altaVehiculo/$1');
 
 $routes->post('guardar', 'Usuarios::guardar');
 $routes->post('actualizar', 'Usuarios::actualizar');
-<<<<<<< HEAD
-$routes->post('venderNuevaEstadia', 'Usuarios::venderNuevaEstadia');
 $routes->post('altaNuevoVehiculo', 'Usuarios::altaNuevoVehiculo');
-
-=======
-
 $routes->post('venderNuevaEstadiaAdmin', 'Usuarios::venderNuevaEstadia');
 $routes->post('venderNuevaEstadia', 'Vendedor::venderNuevaEstadia');
->>>>>>> a547ad77af357c300187a9d0529cc22be6285c31
