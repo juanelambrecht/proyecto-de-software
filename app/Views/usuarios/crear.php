@@ -26,7 +26,7 @@
             </div>
             <div class="mb-3">
                 <label for="dni" class="form-label">DNI</label>
-                <input type="text" class="form-control" name="dni">
+                <input type="text" class="form-control" name="dni" required>
             </div>
             <div class="mb-3">
                 <label for="fecha_nacimiento" class="form-label">Fecha Nacimiento</label>
