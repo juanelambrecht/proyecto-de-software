@@ -1,3 +1,6 @@
+<?php $nav_listado = false;
+$nav_crear = false;
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -112,7 +115,7 @@
             <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
           </div>
           <div class="info">
-            <a href="#" class="d-block">Usuario Administrador</a>
+            <a href="#" class="d-block">Usuario Cliente</a>
           </div>
         </div>
 
@@ -134,63 +137,39 @@
             <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
             <li class="nav-item menu-open">
-              <a href="./listar" class="nav-link">
+
+              <a href="./listar" class="nav-link <?php if ($nav_listado) echo "active"; ?>">
                 <i class="far fa-circle nav-icon"></i>
-                <p>Listado Usuarios</p>
+                <p>Pantalla Inicio</p>
               </a>
             </li>
             <li class="nav-item">
-              <a href="./crear" class="nav-link">
+              <a href="./crear" class="nav-link <?php if ($nav_crear) echo "active"; ?>">
                 <i class="nav-icon fas fa-users"></i>
                 <p>
-                  Registrar Usuarios
+                  Alta Vehiculo 
                 </p>
               </a>
             <li class="nav-item">
               <a href="pages/calendar.html" class="nav-link">
-                <i class="nav-icon far fa-calendar-alt"></i>
-                <p>
-                  Modificar Zonas
-                  <span class="badge badge-info right">2</span>
-                </p>
-              </a>
-
-            </li>
-            <li class="nav-item">
-              <a href="pages/calendar.html" class="nav-link">
-                <i class="nav-icon far fa-calendar-alt"></i>
-                <p>
-                  Vehiculos Estacionados
-                  <span class="badge badge-info right">2</span>
-                </p>
-              </a>
-
-            </li>
-            <li class="nav-item">
-              <a href="./consultaEstacionamientoAdmin" class="nav-link">
                 <i class="nav-icon fas fa-car"></i>
                 <p>
-                  Consulta Estación
-
+                  Estacionar Vehiculo
+                  <span class="badge badge-info right">2</span>
                 </p>
               </a>
+
             </li>
             <li class="nav-item">
-              <a href="./venderEstadia" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Vender Estadia</p>
-              </a>
-            </li>
-            
-            <li class="nav-item">
-              <a href="#" class="nav-link">
+              <a href="pages/widgets.html" class="nav-link">
                 <i class="nav-icon fas fa-copy"></i>
                 <p>
-                  Listado Multas
-                  <span class="badge badge-info right">6</span>
+                 Administrar Perfil
+
                 </p>
               </a>
-
+            </li>
+          
         </nav>
         <!-- /.sidebar-menu -->
       </div>
@@ -203,7 +182,7 @@
     </div>
     <!-- /.content-wrapper -->
     <footer class="main-footer">
-      <strong>Copyright &copy; 2020-2021 <a href="">APP De los pibes</a>.</strong>
+      <strong>Copyright &copy; 2020-2021 <a href="">APP Estacionamiento</a>.</strong>
       Todos los derechos reservados.
       <div class="float-right d-none d-sm-inline-block">
         <b>Version</b> 3.1.0
