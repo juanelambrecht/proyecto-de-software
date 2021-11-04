@@ -247,8 +247,7 @@ class Usuarios extends BaseController
             'modelo' => $this->request->getVar('modelo'),
             'cliente_id' =>  $userSessionID = session()->get('id')
         ];
-
-        // $vehiculo->insert($datos);
+        //  $vehiculo->insert($datos);
         $db->table('vehiculos')->insert($datos);
         return $this->response->redirect(site_url('/homeCliente'));
     }
