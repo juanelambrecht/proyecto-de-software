@@ -124,12 +124,10 @@ class Usuarios extends BaseController
 
     public function editar($id = null)
     {
-
         $usuario = new Usuario();
         $rol = new Rol();
         $datos['roles'] = $rol->orderBy('id', 'ASC')->findAll();
         $datos['usuario'] = $usuario->where('id', $id)->first();
-
         return view('usuarios/editar', $datos);
     }
 
@@ -146,7 +144,6 @@ class Usuarios extends BaseController
             'fecha_nacimiento' => $this->request->getVar('fecha_nacimiento'),
             'id_rol' => $this->request->getVar('rol')
         ];
-
         $id = $this->request->getVar('id');
         $usuario->update($id, $datos);
         return $this->response->redirect(site_url('../listar'));
@@ -166,7 +163,6 @@ class Usuarios extends BaseController
         $usuario = new Usuario();
         //Validar con la BD ususario y pass.
         $result = $usuario->validUser($data);
-        // print_r("entro a autenticate");
         //Redireccionar segun resultado de validación.
         if ($result) {
             $sessData = array(
@@ -211,7 +207,6 @@ class Usuarios extends BaseController
 
     public function consultarPrecio()
     {
-
         $datos = [
             'hora_inicio' => $this->request->getVar('hora_inicio'),
             'hora_fin' => $this->request->getVar('hora_fin'),
@@ -219,7 +214,7 @@ class Usuarios extends BaseController
         ];
         $horaInicio = strtotime($datos['hora_inicio']);
         $horaFin = strtotime($datos['hora_fin']);
-        // Calculo el tiempo en horas, redondeando para arriba 
+        // Calculo el tiempo en horas, redondeando para arriba
         $hrs = round((($horaFin - $horaInicio) / 60) / 60, 0);
         // Busco el precio de la zona 
         $zona = new Zona();
