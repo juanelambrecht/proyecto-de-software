@@ -38,7 +38,7 @@ class Usuarios extends BaseController
     {
 
         $datos = [];
-        return view('usuarios/homeInspector', $datos);
+        return view('inspectores/consultaEstacionamiento', $datos);
     }
     public function homeVendedor()
     {
@@ -46,11 +46,7 @@ class Usuarios extends BaseController
         $datos = [];
         return view('usuarios/homeVendedor', $datos);
     }
-    public function consultaEstacionamiento()
-    {
-        $datos = [];
-        return view('usuarios/consultaEstacionamiento', $datos);
-    }
+    
     public function crear()
     {
         $rol = new Rol();
@@ -58,7 +54,11 @@ class Usuarios extends BaseController
 
         return view('usuarios/crear', $datos);
     }
-
+    public function listarEstacionamiento()
+    {
+        $datos = [];
+        return view('usuarios/consultaEstacionamiento', $datos);
+    }
     public function venderEstadia()
     {
         $zona = new Zona();

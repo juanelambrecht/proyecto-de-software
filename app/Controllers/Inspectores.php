@@ -2,9 +2,9 @@
 
 namespace App\Controllers;
 
-class Estacionamientos extends BaseController
+class Inspectores extends BaseController
 {
-    public function consultaEstacionamiento()
+    public function listarEstacionamiento()
     {
         $datos = [];
         return view('inspectores/consultaEstacionamiento', $datos);

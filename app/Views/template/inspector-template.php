@@ -138,63 +138,18 @@ $nav_venderEstadia = false;
           <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
             <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-            <li class="nav-item menu-open">
-              <a href="./listar" class="nav-link <?php if ($nav_listado) echo "active"; ?>">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Listado Usuarios</p>
-              </a>
-            </li>
+            
             <li class="nav-item">
-              <a href="./crear" class="nav-link <?php if ($nav_crear) echo "active"; ?>">
-                <i class="nav-icon fas fa-users"></i>
-                <p>
-                  Registrar Usuarios
-                </p>
-              </a>
-            <li class="nav-item">
-              <a href="pages/calendar.html" class="nav-link">
-                <i class="nav-icon far fa-calendar-alt"></i>
-                <p>
-                  Modificar Zonas
-                  <span class="badge badge-info right">2</span>
-                </p>
-              </a>
-
-            </li>
-            <li class="nav-item">
-              <a href="pages/calendar.html" class="nav-link">
-                <i class="nav-icon far fa-calendar-alt"></i>
-                <p>
-                  Vehiculos Estacionados
-                  <span class="badge badge-info right">2</span>
-                </p>
-              </a>
-
-            </li>
-            <li class="nav-item">
-              <a href="./consultaEstacionamientoAdmin" class="nav-link" <?php if ($nav_estacionamiento) echo "active"; ?>>
+              <a href="./consultaEstacionamiento" class="nav-link" <?php if ($nav_estacionamiento) echo "active"; ?>>
                 <i class="nav-icon fas fa-car"></i>
                 <p>
                   Consulta Estación
 
                 </p>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="./venderEstadia" class="nav-link <?php if ($nav_venderEstadia) echo "active"; ?>">
-                <i class="far fa-circle nav-icon"></i>
-                <p>Vender Estadia</p>
-              </a>
-            </li>
+            </a>
+              
             
-            <li class="nav-item">
-              <a href="#" class="nav-link">
-                <i class="nav-icon fas fa-copy"></i>
-                <p>
-                  Listado Multas
-                  <span class="badge badge-info right">6</span>
-                </p>
-              </a>
+        
 
         </nav>
         <!-- /.sidebar-menu -->

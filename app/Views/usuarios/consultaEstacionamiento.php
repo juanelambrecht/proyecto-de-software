@@ -1,4 +1,4 @@
-<?=$this->extend('template/inspector-template');
+<?=$this->extend('template/admin-template');
  $nav_estacionamiento=true;?>
 <?=$this->section('content');?>
 
