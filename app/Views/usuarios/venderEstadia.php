@@ -52,7 +52,7 @@ $nav_venderEstadia = true; ?>
 </div>
 <script>
     function check_price() {
-        document.getElementById("totalToPay").innerHTML = getPrice();
+        document.getElementById("totalToPay").innerHTML = <?= site_url('/consultarPrecio') ?>;
     }
 
     function getPrice() {

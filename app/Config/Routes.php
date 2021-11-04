@@ -54,6 +54,7 @@ $routes->get('listar', 'Usuarios::index');
 $routes->get('login', 'Usuarios::login');
 $routes->get('crear', 'Usuarios::crear');
 $routes->get('venderEstadia', 'Usuarios::venderEstadia');
+$routes->get('consultarPrecio', 'Usuarios::consultarPrecio');
 $routes->get('homeCliente', 'Usuarios::homeCliente');
 $routes->get('homeInspector', 'Usuarios::homeInspector');
 $routes->get('homeVendedor', 'Usuarios::homeVendedor');
