@@ -102,6 +102,7 @@ class Usuarios extends BaseController
 
     public function guardar()
     {
+        // $db = \Config\Database::connect();
         $usuario = new Usuario();
         $datos = [
             'nombre' => $this->request->getVar('nombre'),
@@ -113,7 +114,9 @@ class Usuarios extends BaseController
             'contraseña' => $this->request->getVar('contraseña'),
             'id_rol' => $this->request->getVar('rol')
         ];
+
         $usuario->insert($datos);
+        // $db->table('usuarios')->insert($datos);
         return $this->response->redirect(site_url('/listar'));
     }
 
