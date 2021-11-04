@@ -219,7 +219,7 @@ class Usuarios extends BaseController
         ];
         $horaInicio = strtotime($datos['hora_inicio']);
         $horaFin = strtotime($datos['hora_fin']);
-        // Calculo el tiempo en horas, redondeando para arriba
+        // Calculo el tiempo en horas, redondeando para arriba 
         $hrs = round((($horaFin - $horaInicio) / 60) / 60, 0);
         // Busco el precio de la zona 
         $zona = new Zona();
