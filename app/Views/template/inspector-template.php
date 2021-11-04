@@ -5,7 +5,6 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Estacionamiento | Dashboard</title>
-
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome -->
@@ -127,7 +126,6 @@
             </div>
           </div>
         </div>
-
         <!-- Sidebar Menu -->
         <nav class="mt-2">
           <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
@@ -139,13 +137,8 @@
                 <i class="nav-icon fas fa-car"></i>
                 <p>
                   Consulta Estación
-
                 </p>
               </a>
-
-
-
-
         </nav>
         <!-- /.sidebar-menu -->
       </div>

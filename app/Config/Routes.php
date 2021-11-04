@@ -61,11 +61,10 @@ $routes->get('homeVendedor', 'Usuarios::homeVendedor');
 $routes->get('borrar/(:num)', 'Usuarios::borrar/$1');
 $routes->get('editar/(:num)', 'Usuarios::editar/$1');
 $routes->get('resetPass/(:num)', 'Usuarios::resetPass/$1');
+$routes->get('consultaEstacionamiento', 'Inspectores::listarEstacionamiento');
+$routes->get('consultaEstacionamientoAdmin', 'Usuarios::listarEstacionamiento');
+
 
 $routes->post('guardar', 'Usuarios::guardar');
 $routes->post('actualizar', 'Usuarios::actualizar');
 $routes->post('venderNuevaEstadia', 'Usuarios::venderNuevaEstadia');
-
-
-$routes->get('consultaEstacionamiento', 'Inspectores::listarEstacionamiento');
-$routes->get('consultaEstacionamientoAdmin', 'Usuarios::listarEstacionamiento');
