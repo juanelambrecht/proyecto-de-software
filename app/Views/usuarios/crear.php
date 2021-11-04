@@ -1,9 +1,9 @@
-<?=$this->extend('template/admin-template');
- $nav_crear=true;?>
-<?=$this->section('content');?>
+<?= $this->extend('template/admin-template');
+$nav_crear = true; ?>
+<?= $this->section('content'); ?>
 <div class="row justify-content-md-center">
     <div class="col-md-8">
-        <form class="was-validated" action="<?=site_url('/guardar')?>" method="post">
+        <form class="was-validated" action="<?= site_url('/guardar') ?>" method="post">
 
             <div class="mb-3">
                 <label for="usuario" class="form-label">Usuario</label>
@@ -36,12 +36,12 @@
             <div class="input-group mb-3">
                 <label class="input-group-text" for="inputGroupSelect01">Rol de Usuario</label>
                 <select class="form-select" id="inputGroupSelect01" name="rol">
-              
-              <?php foreach($roles as $rol): ?>
-                <option value="<?php echo $rol['id']; ?>"> <?php echo $rol['nombre']; ?>
-                </option>
-              <?php endforeach; ?>
-            </select>
+
+                    <?php foreach ($roles as $rol) : ?>
+                        <option value="<?php echo $rol['id']; ?>"> <?php echo $rol['nombre']; ?>
+                        </option>
+                    <?php endforeach; ?>
+                </select>
 
 
             </div>
@@ -50,4 +50,4 @@
         </form>
     </div>
 </div>
-<?=$this->endsection('content');
+<?= $this->endsection('content');

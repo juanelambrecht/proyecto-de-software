@@ -17,11 +17,11 @@ class RoleValidationFilter implements FilterInterface
         'usuarios/autenticate',
         'error/403',
         'welcome_message',
-        '/errors/error_403'
+        '/errors/error_403',
     );
     // 1 => Admin, 2=>Inspector, 3=>Vendedor, 4=>Cliente
     public $rol_permisos = array(
-        '1' => array('usuarios', 'actualizar', 'guardar', 'listar', 'editar', 'crear', 'borrar', 'resetPass'),
+        '1' => array('usuarios', 'actualizar', 'guardar', 'listar', 'venderEstadia', 'venderNuevaEstadia', 'editar', 'crear', 'borrar', 'resetPass'),
         '2' => array('homeInspector', 'usuarios'),
         '3' => array('homeVendedor', 'usuarios'),
         '4' => array('homeCliente', 'usuarios'),
