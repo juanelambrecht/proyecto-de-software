@@ -233,7 +233,7 @@ class Usuarios extends BaseController
 
     public function altaVehiculo($id = null)
     {
-        
+
         return view('usuarios/altaVehiculo');
     }
 
@@ -247,9 +247,9 @@ class Usuarios extends BaseController
             'modelo' => $this->request->getVar('modelo'),
             'cliente_id' =>  $userSessionID = session()->get('id')
         ];
-       
-        $vehiculo->insert($datos);
-       //$db->table('vehiculos')->insert($datos);
-       return $this->response->redirect(site_url('/homeCliente'));
+
+        // $vehiculo->insert($datos);
+        $db->table('vehiculos')->insert($datos);
+        return $this->response->redirect(site_url('/homeCliente'));
     }
 }

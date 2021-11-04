@@ -1,6 +1,5 @@
-<?= $this->extend('template/client-template');?>
+<?= $this->extend('template/client-template'); ?>
 <?= $this->section('content'); ?>
-//alta
 <div class="row justify-content-md-center">
     <div class="col-md-8">
         <form class="was-validated" action="<?= site_url('/altaNuevoVehiculo') ?>" method="post">
@@ -18,14 +17,14 @@
             </div>
             <div class="mb-3">
                 <label for="marca" class="form-label">Marca </label>
-                <input type="text" class="form-control" name="modelo" required>
+                <input type="text" class="form-control" name="marca" required>
             </div>
             <div class="mb-3">
                 <label for="modelo" class="form-label">Modelo</label>
                 <input type="text" class="form-control" name="modelo" required>
             </div>
-      
-         
+
+
             <!-- <div class="mb-3">
                 <label for="dni" class="form-label">DNI</label>
                 <input type="text" class="form-control" name="dni">
