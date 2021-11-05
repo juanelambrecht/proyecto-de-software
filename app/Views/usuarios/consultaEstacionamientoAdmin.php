@@ -1,4 +1,4 @@
-<?= $this->extend('template/inspector-template'); ?>
+<?= $this->extend('template/admin-template'); ?>
 <?= $this->section('content'); ?>
 
 <section class="content">
@@ -45,6 +45,7 @@
                             </tr>
                           </thead>
                           <tbody>   
+
                           <?php foreach ($estadias as $estadia) : ?>
                               <tr class="odd">
 
@@ -62,7 +63,6 @@
                                     endforeach; ?>
                                 </td>
 
-
                               </tr>
                             <?php endforeach; ?>
 
@@ -73,8 +73,6 @@
                       </div>
                     </div>
                     
-
-
 
 
 <?= $this->endsection('content'); ?>

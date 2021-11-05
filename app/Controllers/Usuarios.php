@@ -35,19 +35,21 @@ class Usuarios extends BaseController
         $datos = [];
         return view('usuarios/homeCliente', $datos);
     }
-    public function homeInspector()
-    {
 
-        $datos = [];
-        return view('inspectores/consultaEstacionamiento', $datos);
-    }
     public function homeVendedor()
     {
 
         $datos = [];
         return view('usuarios/homeVendedor', $datos);
     }
-
+    public function listarEstacionamiento()
+    {
+        $estadia = new Estadia();
+        $datos['estadias'] = $estadia->orderBy('id', 'DESC')->findAll();
+        $usuario = new Usuario();
+        $datos['usuarios'] = $usuario->orderBy('id', 'ASC')->findAll();
+        return view('usuarios/consultaEstacionamientoAdmin', $datos);
+    }
     public function crear()
     {
         $rol = new Rol();
@@ -55,11 +57,8 @@ class Usuarios extends BaseController
 
         return view('usuarios/crear', $datos);
     }
-    public function listarEstacionamiento()
-    {
-        $datos = [];
-        return view('usuarios/consultaEstacionamiento', $datos);
-    }
+    
+
     public function venderEstadia()
     {
         $zona = new Zona();
@@ -183,7 +182,7 @@ class Usuarios extends BaseController
                 return redirect()->to('/listar');
             }
             if ($result[0]->id_rol == 2) {
-                return redirect()->to('/homeInspector');
+                return redirect()->to('/consultaEstacionamiento');
             }
             if ($result[0]->id_rol == 3) {
                 return redirect()->to('/homeVendedor');

@@ -157,16 +157,6 @@
 
             </li>
             <li class="nav-item">
-              <a href="pages/calendar.html" class="nav-link">
-                <i class="nav-icon far fa-calendar-alt"></i>
-                <p>
-                  Vehiculos Estacionados
-                  <span class="badge badge-info right">2</span>
-                </p>
-              </a>
-
-            </li>
-            <li class="nav-item">
               <a href="./consultaEstacionamientoAdmin" class="nav-link">
                 <i class="nav-icon fas fa-car"></i>
                 <p>
