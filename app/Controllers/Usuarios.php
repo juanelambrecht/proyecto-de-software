@@ -4,14 +4,14 @@ namespace App\Controllers;
 
 use App\Models\Estadia;
 use App\Models\Vehiculo;
-use CodeIgniter\Controller;
+// use CodeIgniter\Controller;
 use App\Models\Usuario;
 use App\Models\Rol;
 use App\Models\Zona;
-use DateTime;
-use DateInterval;
-use CodeIgniter\I18n\Time;
-use App\Controllers\strtotime;
+// use DateTime;
+// use DateInterval;
+// use CodeIgniter\I18n\Time;
+// use App\Controllers\strtotime;
 
 class Usuarios extends BaseController
 {
@@ -94,8 +94,8 @@ class Usuarios extends BaseController
         $pesosTotal = ($precioHoraZona['costo_horario'] * $hrs);
         // Inserto el nuevo precio 
         $newData = array_merge($datos, array("pesosTotal" => $pesosTotal));
-        // $estadia->insert($newData);
-        $db->table('estadias')->insert($newData);
+        $estadia->insert($newData);
+        // $db->table('estadias')->insert($newData);
         return $this->response->redirect(site_url('/venderEstadiaAdmin'));
     }
 

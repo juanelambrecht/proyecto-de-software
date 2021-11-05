@@ -26,7 +26,6 @@ class Vendedor extends BaseController
 
     public function venderNuevaEstadia()
     {
-        $db = \Config\Database::connect();
         $userSessionID = session()->get('id');
         $estadia = new Estadia();
         $now = date('Y-m-d');
@@ -51,7 +50,6 @@ class Vendedor extends BaseController
         // Inserto el nuevo precio 
         $newData = array_merge($datos, array("pesosTotal" => $pesosTotal));
         $estadia->insert($newData);
-        // $db->table('estadias')->insert($newData);
         return $this->response->redirect(site_url('vendedor/venderEstadia'));
     }
 

@@ -19,6 +19,6 @@ class Estadia extends Model
         'hora_inicio',
         'hora_fin',
         'pesosTotal',
-        'zona_id '
+        'zona_id'
     ];
 }
