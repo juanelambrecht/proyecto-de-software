@@ -103,7 +103,7 @@ class Usuarios extends BaseController
 
     public function guardar()
     {
-        // $db = \Config\Database::connect();
+
         $usuario = new Usuario();
         $datos = [
             'nombre' => $this->request->getVar('nombre'),
@@ -117,7 +117,7 @@ class Usuarios extends BaseController
         ];
 
         $usuario->insert($datos);
-        // $db->table('usuarios')->insert($datos);
+
         return $this->response->redirect(site_url('/listar'));
     }
 
@@ -233,7 +233,7 @@ class Usuarios extends BaseController
 
     public function altaVehiculo($id = null)
     {
-        
+
         return view('usuarios/altaVehiculo');
     }
 
@@ -247,7 +247,7 @@ class Usuarios extends BaseController
             'modelo' => $this->request->getVar('modelo'),
             'cliente_id' =>  $userSessionID = session()->get('id')
         ];
-      //  $vehiculo->insert($datos);
+        //$vehiculo->insert($datos);
        $db->table('vehiculos')->insert($datos);
        return $this->response->redirect(site_url('/homeCliente'));
     }
