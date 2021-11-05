@@ -22,5 +22,6 @@ class Vehiculo extends Model
         'cliente_id'
     ];
 
+
     
 }

@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\Estadia;
+use App\Models\Cliente;
 use App\Models\Vehiculo;
 // use CodeIgniter\Controller;
 use App\Models\Usuario;
@@ -244,16 +245,20 @@ class Usuarios extends BaseController
 
     public function altaNuevoVehiculo()
     {
-        $db = \Config\Database::connect();
+        //$db = \Config\Database::connect();
         $vehiculo = new Vehiculo();
+        $cliente = new Cliente();
+        $usuario_session = $userSessionID = session()->get('id');
+        $cliente_id = $cliente->where('usuario_id',$usuario_session)->first();
         $datos = [
             'patente' => $this->request->getVar('patente'),
             'marca' => $this->request->getVar('marca'),
             'modelo' => $this->request->getVar('modelo'),
-            'cliente_id' =>  $userSessionID = session()->get('id')
+            'cliente_id' =>  $cliente_id['cliente_id']
         ];
-        //$vehiculo->insert($datos);
-        $db->table('vehiculos')->insert($datos);
-        return $this->response->redirect(site_url('/homeCliente'));
+
+        $vehiculo->insert($datos);
+       //$db->table('vehiculos')->insert($datos);
+       return $this->response->redirect(site_url('/homeCliente'));
     }
 }
