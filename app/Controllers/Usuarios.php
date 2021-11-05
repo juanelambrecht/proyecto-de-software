@@ -18,8 +18,6 @@ class Usuarios extends BaseController
 
     public function index()
     {
-
-
         $usuario = new Usuario();
         $datos['usuarios'] = $usuario->orderBy('id', 'ASC')->findAll();
 
@@ -68,7 +66,6 @@ class Usuarios extends BaseController
 
     public function venderNuevaEstadia()
     {
-        $db = \Config\Database::connect();
         // Get user session ID
         $userSessionID = session()->get('id');
         // Creo la estadia
@@ -95,7 +92,16 @@ class Usuarios extends BaseController
         // Inserto el nuevo precio 
         $newData = array_merge($datos, array("pesosTotal" => $pesosTotal));
         $estadia->insert($newData);
-        // $db->table('estadias')->insert($newData);
+
+        // Pasar mensaje de exito al redirect ???????????
+
+        // $res = $estadia->insert($newData);
+        // if ($res > 0) {
+        //     $this->session->set_flashdata('Success', 'Estadia cargada');
+        // } else {
+        //     $this->session->set_flashdata('Success', 'Error al cargar la estadia');
+        // }
+
         return $this->response->redirect(site_url('/venderEstadiaAdmin'));
     }
 

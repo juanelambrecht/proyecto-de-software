@@ -44,8 +44,8 @@
                                 Venta</th>
                             </tr>
                           </thead>
-                          <tbody>   
-                          <?php foreach ($estadias as $estadia) : ?>
+                          <tbody>
+                            <?php foreach ($estadias as $estadia) : ?>
                               <tr class="odd">
 
                                 <td><?= $estadia->id; ?></td>
@@ -61,20 +61,16 @@
                                       }
                                     endforeach; ?>
                                 </td>
-
-
                               </tr>
                             <?php endforeach; ?>
-
-
                           </tbody>
 
                         </table>
                       </div>
                     </div>
-                    
 
 
 
 
-<?= $this->endsection('content'); ?>
+
+                    <?= $this->endsection('content'); ?>

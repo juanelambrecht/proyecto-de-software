@@ -1,6 +1,8 @@
 <?= $this->extend('template/admin-template'); ?>
 <?= $this->section('content'); ?>
 
+
+
 <div class="row justify-content-md-center">
     <div class="col-md-8">
         <form class="was-validated" action="<?= site_url('/venderNuevaEstadiaAdmin') ?>" method="post">
