@@ -35,19 +35,21 @@ class Usuarios extends BaseController
         $datos = [];
         return view('usuarios/homeCliente', $datos);
     }
-    public function homeInspector()
-    {
 
-        $datos = [];
-        return view('inspectores/consultaEstacionamiento', $datos);
-    }
     public function homeVendedor()
     {
 
         $datos = [];
         return view('usuarios/homeVendedor', $datos);
     }
-
+    public function listarEstacionamiento()
+    {
+        $estadia = new Estadia();
+        $datos['estadias'] = $estadia->orderBy('id', 'DESC')->findAll();
+        $usuario = new Usuario();
+        $datos['usuarios'] = $usuario->orderBy('id', 'ASC')->findAll();
+        return view('usuarios/consultaEstacionamientoAdmin', $datos);
+    }
     public function crear()
     {
         $rol = new Rol();
@@ -55,11 +57,8 @@ class Usuarios extends BaseController
 
         return view('usuarios/crear', $datos);
     }
-    public function listarEstacionamiento()
-    {
-        $datos = [];
-        return view('usuarios/consultaEstacionamiento', $datos);
-    }
+
+
     public function venderEstadia()
     {
         $zona = new Zona();
@@ -81,7 +80,7 @@ class Usuarios extends BaseController
             'fecha' => $now,
             'hora_inicio' => $this->request->getVar('hora_inicio'),
             'hora_fin' => $this->request->getVar('hora_fin'),
-            // 'pesosTotal' => 0,
+            'pesosTotal' => 0,
             'zona_id' => $this->request->getVar('zona')
         ];
         $horaInicio = strtotime($datos['hora_inicio']);
@@ -95,7 +94,7 @@ class Usuarios extends BaseController
         $pesosTotal = ($precioHoraZona['costo_horario'] * $hrs);
         // Inserto el nuevo precio 
         $newData = array_merge($datos, array("pesosTotal" => $pesosTotal));
-        //$estadia->insert($newData);
+        // $estadia->insert($newData);
         $db->table('estadias')->insert($newData);
         return $this->response->redirect(site_url('/venderEstadiaAdmin'));
     }
@@ -103,7 +102,7 @@ class Usuarios extends BaseController
 
     public function guardar()
     {
-        // $db = \Config\Database::connect();
+
         $usuario = new Usuario();
         $datos = [
             'nombre' => $this->request->getVar('nombre'),
@@ -117,7 +116,7 @@ class Usuarios extends BaseController
         ];
 
         $usuario->insert($datos);
-        // $db->table('usuarios')->insert($datos);
+
         return $this->response->redirect(site_url('/listar'));
     }
 
@@ -183,7 +182,7 @@ class Usuarios extends BaseController
                 return redirect()->to('/listar');
             }
             if ($result[0]->id_rol == 2) {
-                return redirect()->to('/homeInspector');
+                return redirect()->to('/consultaEstacionamiento');
             }
             if ($result[0]->id_rol == 3) {
                 return redirect()->to('/homeVendedor');
@@ -247,7 +246,7 @@ class Usuarios extends BaseController
             'modelo' => $this->request->getVar('modelo'),
             'cliente_id' =>  $userSessionID = session()->get('id')
         ];
-        //  $vehiculo->insert($datos);
+        //$vehiculo->insert($datos);
         $db->table('vehiculos')->insert($datos);
         return $this->response->redirect(site_url('/homeCliente'));
     }

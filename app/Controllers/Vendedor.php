@@ -27,9 +27,7 @@ class Vendedor extends BaseController
     public function venderNuevaEstadia()
     {
         $db = \Config\Database::connect();
-        // Get user session ID
         $userSessionID = session()->get('id');
-        // Creo la estadia
         $estadia = new Estadia();
         $now = date('Y-m-d');
         $datos = [
@@ -38,7 +36,7 @@ class Vendedor extends BaseController
             'fecha' => $now,
             'hora_inicio' => $this->request->getVar('hora_inicio'),
             'hora_fin' => $this->request->getVar('hora_fin'),
-            // 'pesosTotal' => 0,
+            'pesosTotal' => 0,
             'zona_id' => $this->request->getVar('zona')
         ];
         $horaInicio = strtotime($datos['hora_inicio']);
@@ -47,13 +45,13 @@ class Vendedor extends BaseController
         $hrs = round((($horaFin - $horaInicio) / 60) / 60, 0);
         // Busco el precio de la zona 
         $zona = new Zona();
-        $precioHoraZona = $zona->where('id', $datos['zona_id'])->first();
+        $zonaArray = $zona->where('id', $datos['zona_id'])->first();
         // Calculo el precio a pagar
-        $pesosTotal = ($precioHoraZona['costo_horario'] * $hrs);
+        $pesosTotal = ($zonaArray['costo_horario'] * $hrs);
         // Inserto el nuevo precio 
         $newData = array_merge($datos, array("pesosTotal" => $pesosTotal));
-        // $estadia->insert($newData);
-        $db->table('estadias')->insert($newData);
+        $estadia->insert($newData);
+        // $db->table('estadias')->insert($newData);
         return $this->response->redirect(site_url('vendedor/venderEstadia'));
     }
 
