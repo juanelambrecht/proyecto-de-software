@@ -51,6 +51,7 @@ if (file_exists(APPPATH . 'Config/' . ENVIRONMENT . '/Routes.php')) {
 }
 
 $routes->get('listar', 'Usuarios::index');
+
 $routes->get('login', 'Usuarios::login');
 $routes->get('crear', 'Usuarios::crear');
 $routes->get('venderEstadiaAdmin', 'Usuarios::venderEstadia');
@@ -72,3 +73,7 @@ $routes->post('actualizar', 'Usuarios::actualizar');
 $routes->post('altaNuevoVehiculo', 'Usuarios::altaNuevoVehiculo');
 $routes->post('venderNuevaEstadiaAdmin', 'Usuarios::venderNuevaEstadia');
 $routes->post('venderNuevaEstadia', 'Vendedor::venderNuevaEstadia');
+
+
+
+$routes->get('precio', 'EstadiaController::precio');

@@ -21,4 +21,23 @@ class Estadia extends Model
         'pesosTotal',
         'zona_id'
     ];
+
+    public function calcularPrecio($zonaId, $horaIni, $horaFin)
+    {
+        $hora_Inicio = strtotime($horaIni);
+        $hora_Fin = strtotime($horaFin);
+        // Calculo el tiempo en horas, redondeando para arriba
+        $hrs = round((($hora_Fin - $hora_Inicio) / 60) / 60, 0);
+        // Busco el precio de la zona 
+        $zona = new Zona();
+        $precioHoraZona = $zona->where('id', $zonaId)->first();
+        // Calculo el precio a pagar
+        $pesosTotal = ($precioHoraZona['costo_horario'] * $hrs);
+        return $pesosTotal;
+
+        // $datos = array(
+        //     'precio' => $pesosTotal,
+        // );
+        // return $datos;
+    }
 }

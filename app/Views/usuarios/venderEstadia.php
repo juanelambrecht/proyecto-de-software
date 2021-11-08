@@ -20,15 +20,15 @@
             </div>
             <div class="mb-3">
                 <label for="contraseña" class="form-label">Hora Inicio </label>
-                <input type="time" class="form-control" name="hora_inicio" required>
+                <input type="time" class="form-control" id="hora_inicio" name="hora_inicio" required>
             </div>
             <div class="mb-3">
                 <label for="nombre" class="form-label">Hora Fin </label>
-                <input type="time" class="form-control" name="hora_fin" required>
+                <input type="time" class="form-control" id="hora_fin" name="hora_fin" required>
             </div>
             <div class="input-group mb-3">
                 <label class="input-group-text" for="inputGroupSelect01">Zona </label>
-                <select class="form-select" id="inputGroupSelect01" name="zona">
+                <select class="form-select" id="zona" name="zona">
                     <?php foreach ($zonas as $zona) : ?>
                         <option value="<?php echo $zona['id']; ?>"> <?php echo $zona['descripcion'];
                                                                     echo " - Precio Hora : $ ";
@@ -42,24 +42,32 @@
                 <input type="text" class="form-control" name="dni">
             </div> -->
             <br>
-            <button type="button" onclick="check_price()" class="btn btn-primary">Consultar Precio</button>
-            <!-- <input readonly type="text" id="totalToPay"> -->
-            <p id="totalToPay"></p>
+            <button type="button" onclick="calcularPrecio()" class="btn btn-primary">Consultar Precio</button>
+            <div id="div-precio">
+                <p id="totalToPay"></p>
+            </div>
             <br>
             <a href=""><button type="submit" class="btn btn-primary">Vender</button></a>
 
         </form>
     </div>
 </div>
-<script>
-    function check_price() {
-        document.getElementById("totalToPay").innerHTML = '$' + getPrice();
-    }
 
-    function getPrice() {
-        // var $total = '<?php site_url('/consultarPrecio') ?>';
-        // return $total;
-        return 10;
+<script>
+    function calcularPrecio(zonaId, horaIni, horaFin) {
+        zonaId = document.getElementById("zona").value;
+        horaIni = document.getElementById("hora_inicio").value;
+        horaFin = document.getElementById("hora_fin").value;
+        url = "<?= base_url('api/estadiacontroller/precio/') ?>" +
+            "/" + zonaId + "/" + horaIni + "/" + horaFin;
+        $.ajax({
+            url: url,
+            dataType: 'json',
+            method: 'GET'
+        }).then(function(data) {
+            console.log(data);
+            document.getElementById("totalToPay").innerHTML = '$ ' + data;
+        });
     }
 </script>
 <?= $this->endsection('content');
