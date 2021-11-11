@@ -17,10 +17,6 @@
                 <div class="col-sm-12 col-md-6"></div>
                 <div class="col-sm-12 col-md-6"></div>
               </div>
-              <div class="row">
-                <div class="col-sm-12">
-                  <table id="example2" class="table table-bordered table-hover dataTable dtr-inline" role="grid" aria-describedby="example2_info">
-
                     <div class="row">
                       <div class="col-sm-12">
                         <table id="example2" class="table table-bordered table-hover dataTable dtr-inline" role="grid" aria-describedby="example2_info">
@@ -74,5 +70,5 @@
                     </div>
                     
 
-
+                    
 <?= $this->endsection('content'); ?>

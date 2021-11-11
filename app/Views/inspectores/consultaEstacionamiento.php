@@ -17,10 +17,6 @@
                 <div class="col-sm-12 col-md-6"></div>
                 <div class="col-sm-12 col-md-6"></div>
               </div>
-              <div class="row">
-                <div class="col-sm-12">
-                  <table id="example2" class="table table-bordered table-hover dataTable dtr-inline" role="grid" aria-describedby="example2_info">
-
                     <div class="row">
                       <div class="col-sm-12">
                         <table id="example2" class="table table-bordered table-hover dataTable dtr-inline" role="grid" aria-describedby="example2_info">
@@ -44,8 +40,9 @@
                                 Venta</th>
                             </tr>
                           </thead>
-                          <tbody>
-                            <?php foreach ($estadias as $estadia) : ?>
+                          <tbody>   
+
+                          <?php foreach ($estadias as $estadia) : ?>
                               <tr class="odd">
 
                                 <td><?= $estadia->id; ?></td>
@@ -61,16 +58,17 @@
                                       }
                                     endforeach; ?>
                                 </td>
+
                               </tr>
                             <?php endforeach; ?>
+
+
                           </tbody>
 
                         </table>
                       </div>
                     </div>
+                    
 
-
-
-
-
-                    <?= $this->endsection('content'); ?>
+                    
+<?= $this->endsection('content'); ?>
