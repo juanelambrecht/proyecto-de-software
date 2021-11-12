@@ -286,14 +286,8 @@ class Usuarios extends BaseController
         // Busco el precio de la zona 
         $zona = new Zona();
         $precioHoraZona = $zona->where('id', $datos->zona_id)->first();
-
         // Calculo el precio a pagar
         $pesosTotal = (($precioHoraZona['costo_horario'] * $hrs) * -1);
-
-
-        // print_r($pesosTotal);
-        // die();
-
         $datos1 = [
             // 'patente' => $datos->patente,
             // 'fecha' => $datos->fecha,
@@ -302,14 +296,7 @@ class Usuarios extends BaseController
             'pesosTotal' => $pesosTotal,
             // 'zona_id' => $datos->zona_id
         ];
-
         $estadia->update($id, $datos1);
         return $this->response->redirect(site_url('/homeCliente'));
-
-        // $userSessionID = session()->get('id');
-        // $estadia = new Estadia();
-        // $array = array('user_id' => $userSessionID, 'hora_fin' => null);
-        // $datos['estadias'] = $estadia->where($array)->findAll();
-        // return view('usuarios/desestacionar', $datos);
     }
 }
