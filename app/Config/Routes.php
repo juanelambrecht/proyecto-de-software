@@ -67,6 +67,9 @@ $routes->get('resetPass/(:num)', 'Usuarios::resetPass/$1');
 $routes->get('consultaEstacionamiento', 'Inspectores::listarEstacionamiento');
 $routes->get('consultaEstacionamientoAdmin', 'Usuarios::listarEstacionamiento');
 $routes->get('altaVehiculo', 'Usuarios::altaVehiculo');
+$routes->get('desestacionarV', 'Usuarios::desestacionarV');
+$routes->get('desestacionarVehiculo/(:num)', 'Usuarios::desestacionarVehiculo/$1');
+
 
 $routes->post('guardar', 'Usuarios::guardar');
 $routes->post('actualizar', 'Usuarios::actualizar');

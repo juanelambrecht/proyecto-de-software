@@ -9,7 +9,7 @@ use App\Models\Vehiculo;
 use App\Models\Usuario;
 use App\Models\Rol;
 use App\Models\Zona;
-// use DateTime;
+use Date;
 // use DateInterval;
 // use CodeIgniter\I18n\Time;
 // use App\Controllers\strtotime;
@@ -250,7 +250,7 @@ class Usuarios extends BaseController
         $vehiculo = new Vehiculo();
         $cliente = new Cliente();
         $usuario_session = $userSessionID = session()->get('id');
-        $cliente_id = $cliente->where('usuario_id',$usuario_session)->first();
+        $cliente_id = $cliente->where('usuario_id', $usuario_session)->first();
         $datos = [
             'patente' => $this->request->getVar('patente'),
             'marca' => $this->request->getVar('marca'),
@@ -259,7 +259,57 @@ class Usuarios extends BaseController
         ];
 
         $vehiculo->insert($datos);
-       //$db->table('vehiculos')->insert($datos);
-       return $this->response->redirect(site_url('/homeCliente'));
+        //$db->table('vehiculos')->insert($datos);
+        return $this->response->redirect(site_url('/homeCliente'));
+    }
+
+    public function desestacionarV()
+    {
+        $userSessionID = session()->get('id');
+        $estadia = new Estadia();
+        $array = array('user_id' => $userSessionID, 'hora_fin' => null);
+        $datos['estadias'] = $estadia->where($array)->findAll();
+        return view('usuarios/desestacionar', $datos);
+    }
+
+    public function desestacionarVehiculo($id = null)
+    {
+        // hora actual en la cual se desestaciona => hora_fin de la estadia
+        date_default_timezone_set("America/Argentina/Buenos_Aires");
+        $nowtime = date("H:i:s");
+        $estadia = new Estadia();
+        $datos = $estadia->where('id', $id)->first();
+        // hora inicio de la estadia
+        $horaInicio = $datos->hora_inicio;
+        // Calculo el tiempo en horas, redondeando para arriba
+        $hrs = round(((strtotime($nowtime) - strtotime($horaInicio)) / 60) / 60, 0);
+        // Busco el precio de la zona 
+        $zona = new Zona();
+        $precioHoraZona = $zona->where('id', $datos->zona_id)->first();
+
+        // Calculo el precio a pagar
+        $pesosTotal = (($precioHoraZona['costo_horario'] * $hrs) * -1);
+
+
+        // print_r($pesosTotal);
+        // die();
+
+        $datos1 = [
+            // 'patente' => $datos->patente,
+            // 'fecha' => $datos->fecha,
+            // 'hora_inicio' => $datos->hora_inicio,
+            'hora_fin' => $nowtime,
+            'pesosTotal' => $pesosTotal,
+            // 'zona_id' => $datos->zona_id
+        ];
+
+        $estadia->update($id, $datos1);
+        return $this->response->redirect(site_url('/homeCliente'));
+
+        // $userSessionID = session()->get('id');
+        // $estadia = new Estadia();
+        // $array = array('user_id' => $userSessionID, 'hora_fin' => null);
+        // $datos['estadias'] = $estadia->where($array)->findAll();
+        // return view('usuarios/desestacionar', $datos);
     }
 }
