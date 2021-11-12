@@ -289,12 +289,8 @@ class Usuarios extends BaseController
         // Calculo el precio a pagar
         $pesosTotal = (($precioHoraZona['costo_horario'] * $hrs) * -1);
         $datos1 = [
-            // 'patente' => $datos->patente,
-            // 'fecha' => $datos->fecha,
-            // 'hora_inicio' => $datos->hora_inicio,
             'hora_fin' => $nowtime,
             'pesosTotal' => $pesosTotal,
-            // 'zona_id' => $datos->zona_id
         ];
         $estadia->update($id, $datos1);
         return $this->response->redirect(site_url('/homeCliente'));
