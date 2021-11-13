@@ -72,4 +72,4 @@
                         </table>
                       </div>
                     </div>
-                    <?= $this->endsection('content');
+<?= $this->endsection('content');?>

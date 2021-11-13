@@ -146,16 +146,7 @@
                   Registrar Usuarios
                 </p>
               </a>
-            <li class="nav-item">
-              <a href="pages/calendar.html" class="nav-link">
-                <i class="nav-icon far fa-calendar-alt"></i>
-                <p>
-                  Modificar Zonas
-                  <span class="badge badge-info right">2</span>
-                </p>
-              </a>
-
-            </li>
+            
             <li class="nav-item">
               <a href="./consultaEstacionamientoAdmin" class="nav-link">
                 <i class="nav-icon fas fa-car"></i>
@@ -172,14 +163,7 @@
               </a>
             </li>
 
-            <li class="nav-item">
-              <a href="#" class="nav-link">
-                <i class="nav-icon fas fa-copy"></i>
-                <p>
-                  Listado Multas
-                  <span class="badge badge-info right">6</span>
-                </p>
-              </a>
+            
 
         </nav>
         <!-- /.sidebar-menu -->

@@ -57,6 +57,7 @@ $routes->get('crear', 'Usuarios::crear');
 $routes->get('venderEstadiaAdmin', 'Usuarios::venderEstadia');
 $routes->get('consultarPrecio', 'Usuarios::consultarPrecio');
 $routes->get('venderEstadia', 'Vendedor::venderEstadia');
+$routes->get('estacionarVehiculo', 'Usuarios::estacionarVehiculo');
 $routes->get('consultarPrecio', 'Vendedor::consultarPrecio');
 $routes->get('homeCliente', 'Usuarios::homeCliente');
 $routes->get('homeInspector', 'Usuarios::homeInspector');
@@ -69,13 +70,15 @@ $routes->get('consultaEstacionamientoAdmin', 'Usuarios::listarEstacionamiento');
 $routes->get('altaVehiculo', 'Usuarios::altaVehiculo');
 $routes->get('desestacionarV', 'Usuarios::desestacionarV');
 $routes->get('desestacionarVehiculo/(:num)', 'Usuarios::desestacionarVehiculo/$1');
+$routes->get('estacionarPendiente/(:num)', 'Usuarios::estacionarPendiente/$1');
 
-
+$routes->post('venderEstadiaPendiente','Usuarios::venderEstadiaPendiente');
 $routes->post('guardar', 'Usuarios::guardar');
 $routes->post('actualizar', 'Usuarios::actualizar');
 $routes->post('altaNuevoVehiculo', 'Usuarios::altaNuevoVehiculo');
-$routes->post('venderNuevaEstadiaAdmin', 'Usuarios::venderNuevaEstadia');
+$routes->post('venderNuevaEstadiaAdmin', 'Usuarios::venderEstadiaAdmin');
 $routes->post('venderNuevaEstadia', 'Vendedor::venderNuevaEstadia');
+$routes->post('venderNuevaEstadia', 'Usuarios::estacionarGuardaVehiculo');
 
 
 

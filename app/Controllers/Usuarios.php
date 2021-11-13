@@ -9,7 +9,7 @@ use App\Models\Vehiculo;
 use App\Models\Usuario;
 use App\Models\Rol;
 use App\Models\Zona;
-use Date;
+//use Date;
 // use DateInterval;
 // use CodeIgniter\I18n\Time;
 // use App\Controllers\strtotime;
@@ -30,8 +30,12 @@ class Usuarios extends BaseController
 
     public function homeCliente()
     {
-
-        $datos = [];
+        $userSessionID = session()->get('id');
+        $cliente = new Cliente();
+        $datos['cliente'] = $cliente->where('usuario_id',$userSessionID)->first();
+        $vehiculo = new Vehiculo();
+        $datos['vehiculos'] = $vehiculo->orderBy('vehiculo_id','ASC')->findAll();
+        
         return view('usuarios/homeCliente', $datos);
     }
 
@@ -59,14 +63,22 @@ class Usuarios extends BaseController
     }
 
 
-    public function venderEstadia()
+    public function estacionarVehiculo()
     {
         $zona = new Zona();
         $datos['zonas'] = $zona->orderBy('id', 'ASC')->findAll();
-        return view('usuarios/venderEstadia', $datos);
+        return view('usuarios/estacionarVehiculo', $datos);
     }
+    public function estacionarPendiente($id){
+        $vehiculo = new Vehiculo();
+        $datos['vehiculo'] = $vehiculo->where('vehiculo_id',$id)->first();
 
-    public function venderNuevaEstadia()
+        $zona = new Zona();
+        $datos['zonas'] = $zona->orderBy('id', 'ASC')->findAll();
+        return view('usuarios/estacionarPendiente',$datos);
+
+    }
+    public function venderEstadiaAdmin()
     {
         // Get user session ID
         $userSessionID = session()->get('id');
@@ -94,19 +106,57 @@ class Usuarios extends BaseController
         // Inserto el nuevo precio 
         $newData = array_merge($datos, array("pesosTotal" => $pesosTotal));
         $estadia->insert($newData);
-
-        // Pasar mensaje de exito al redirect ???????????
-
-        // $res = $estadia->insert($newData);
-        // if ($res > 0) {
-        //     $this->session->set_flashdata('Success', 'Estadia cargada');
-        // } else {
-        //     $this->session->set_flashdata('Success', 'Error al cargar la estadia');
-        // }
-
         return $this->response->redirect(site_url('/venderEstadiaAdmin'));
     }
-
+    public function venderEstadiaPendiente()
+    {
+        // Get user session ID
+        $userSessionID = session()->get('id');
+        // Creo la estadia
+        $estadia = new Estadia();
+        $now = date('Y-m-d');
+        $datos = [
+            'user_id' => $userSessionID,
+            'patente' => $this->request->getVar('patente'),
+            'fecha' => $now,
+            'hora_inicio' => $this->request->getVar('hora_inicio'),
+            'hora_fin' => NULL,
+            'pesosTotal' => 0,
+            'zona_id' => $this->request->getVar('zona')
+        ];
+        $estadia->insert($datos);
+        return $this->response->redirect(site_url('/homeCliente'));
+    }
+    public function estacionarGuardaVehiculo()
+    {
+        // Get user session ID
+        $userSessionID = session()->get('id');
+        // Creo la estadia
+        $estadia = new Estadia();
+        $now = date('Y-m-d');
+        $datos = [
+            'user_id' => $userSessionID,
+            'patente' => $this->request->getVar('patente'),
+            'fecha' => $now,
+            'hora_inicio' => $this->request->getVar('hora_inicio'),
+            'hora_fin' => $this->request->getVar('hora_fin'),
+            'pesosTotal' => 0,
+            'zona_id' => $this->request->getVar('zona')
+        ];
+        $horaInicio = strtotime($datos['hora_inicio']);
+        $horaFin = strtotime($datos['hora_fin']);
+        // Calculo el tiempo en horas, redondeando para arriba
+        $hrs = round((($horaFin - $horaInicio) / 60) / 60, 0);
+        // Busco el precio de la zona 
+        $zona = new Zona();
+        $precioHoraZona = $zona->where('id', $datos['zona_id'])->first();
+        // Calculo el precio a pagar
+        $pesosTotal = ($precioHoraZona['costo_horario'] * $hrs);
+        // Inserto el nuevo precio 
+        $newData = array_merge($datos, array("pesosTotal" => $pesosTotal));
+        $estadia->insert($newData);
+        return $this->response->redirect(site_url('/estacionarVehiculo'));
+    }
 
     public function guardar()
     {
