@@ -7,7 +7,7 @@
       <div class="col-12">
         <div class="card">
           <div class="card-header">
-            <h3 class="card-title">Mis Autos</h3>
+            <h3 class="card-title">Mi cochera</h3>
           </div>
           <!-- /.card-header -->
           <div class="card-body">
@@ -34,7 +34,11 @@
                                 <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="">
                                 Modelo</th>
                                 <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="">
-                                Estacionar Pendiente</th>
+                                E. Indefinido</th>
+                                
+                                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="">
+                                E. Pendiente
+                                </th>
                                 </tr>
                           </thead>
                           <tbody>
@@ -46,6 +50,9 @@
                                 <td><?= $vehiculo->patente; ?></td>
                                 <td><?= $vehiculo->marca; ?></td>
                                 <td><?= $vehiculo->modelo; ?></td>
+                                <td>
+                                    <a href="<?= base_url('estacionarIndefinido/' . $vehiculo->vehiculo_id); ?>" class="btn btn-outline-success" type="button"><i class="fa fa-key"></i></a>
+                                </td>
                                 <td>
                                     <a href="<?= base_url('estacionarPendiente/' . $vehiculo->vehiculo_id); ?>" class="btn btn-outline-success" type="button"><i class="fa fa-key"></i></a>
                                 </td>

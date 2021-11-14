@@ -69,14 +69,55 @@ class Usuarios extends BaseController
         $datos['zonas'] = $zona->orderBy('id', 'ASC')->findAll();
         return view('usuarios/estacionarVehiculo', $datos);
     }
+    public function estacionarIndefinido($id){
+        $vehiculo = new Vehiculo();
+        $datos['vehiculo'] = $vehiculo->where('vehiculo_id',$id)->first();
+
+        $zona = new Zona();
+        $datos['zonas'] = $zona->orderBy('id', 'ASC')->findAll();
+        return view('usuarios/estacionarIndefinido',$datos);
+
+    }
     public function estacionarPendiente($id){
         $vehiculo = new Vehiculo();
         $datos['vehiculo'] = $vehiculo->where('vehiculo_id',$id)->first();
 
         $zona = new Zona();
         $datos['zonas'] = $zona->orderBy('id', 'ASC')->findAll();
+        
         return view('usuarios/estacionarPendiente',$datos);
 
+    }
+    public function estacionarNuevoPendiente()
+    {
+        // Get user session ID
+        $userSessionID = session()->get('id');
+        // Creo la estadia
+        $estadia = new Estadia();
+        $now = date('Y-m-d');
+        $datos = [
+            'user_id' => $userSessionID,
+            'patente' => $this->request->getVar('patente'),
+            'fecha' => $now,
+            'hora_inicio' => $this->request->getVar('hora_inicio'),
+            'hora_fin' => $this->request->getVar('hora_fin'),
+            'pesosTotal' => 0,
+            'zona_id' => $this->request->getVar('zona')
+        ];
+        $horaInicio = strtotime($datos['hora_inicio']);
+        $horaFin = strtotime($datos['hora_fin']);
+        // Calculo el tiempo en horas, redondeando para arriba
+        $hrs = round((($horaFin - $horaInicio) / 60) / 60, 0);
+        // Busco el precio de la zona 
+        $zona = new Zona();
+        $precioHoraZona = $zona->where('id', $datos['zona_id'])->first();
+        // Calculo el precio a pagar
+        $pesosTotal = ($precioHoraZona['costo_horario'] * $hrs);
+        $pesosTotal = 0 - $pesosTotal;
+        // Inserto el nuevo precio 
+        $newData = array_merge($datos, array("pesosTotal" => $pesosTotal));
+        $estadia->insert($newData);
+        return $this->response->redirect(site_url('/homeCliente'));
     }
     public function venderEstadiaAdmin()
     {
@@ -108,7 +149,7 @@ class Usuarios extends BaseController
         $estadia->insert($newData);
         return $this->response->redirect(site_url('/venderEstadiaAdmin'));
     }
-    public function venderEstadiaPendiente()
+    public function venderEstadiaIndefinido()
     {
         // Get user session ID
         $userSessionID = session()->get('id');
