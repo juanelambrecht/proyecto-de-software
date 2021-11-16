@@ -26,8 +26,10 @@
                 </select>
             </div>
             <a href=""><button type="submit" class="btn btn-primary">Vender</button></a>
-
+                            
         </form>
+        <br>
+        <a href="../homeCliente"><button class="btn btn-secondary">Cancelar</button></a>
     </div>
 </div>
 </div>
