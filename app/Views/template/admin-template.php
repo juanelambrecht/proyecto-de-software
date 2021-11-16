@@ -62,7 +62,7 @@
           <div class="navbar-search-block">
             <form class="form-inline">
               <div class="input-group input-group-sm">
-                <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
+                <input class="form-control form-control-navbar" type="search" placeholder="Buscar" aria-label="Search">
                 <div class="input-group-append">
                   <button class="btn btn-navbar" type="submit">
                     <i class="fas fa-search"></i>
@@ -135,7 +135,7 @@
                with font-awesome or any other icon font library -->
             <li class="nav-item menu-open">
               <a href="./listar" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
+                <i class="nav-icon fas fa-list-alt"></i>
                 <p>Listado Usuarios</p>
               </a>
             </li>
@@ -149,16 +149,16 @@
             
             <li class="nav-item">
               <a href="./consultaEstacionamientoAdmin" class="nav-link">
-                <i class="nav-icon fas fa-car"></i>
+                <i class="nav-icon fas fa-sitemap"></i>
                 <p>
-                  Consulta Estación
+                  Vehiculos Estac.
 
                 </p>
               </a>
             </li>
             <li class="nav-item">
               <a href="./venderEstadiaAdmin" class="nav-link">
-                <i class="far fa-circle nav-icon"></i>
+                <i class="nav-icon fas fa-cart-arrow-down"></i>
                 <p>Vender Estadia</p>
               </a>
             </li>
@@ -177,7 +177,7 @@
     </div>
     <!-- /.content-wrapper -->
     <footer class="main-footer">
-      <strong>Copyright &copy; 2020-2021 <a href="">APP De los pibes</a>.</strong>
+      <strong>Copyright &copy; 2020-2021 <a href="">APP De Estacionamiento</a>.</strong>
       Todos los derechos reservados.
       <div class="float-right d-none d-sm-inline-block">
         <b>Version</b> 3.1.0

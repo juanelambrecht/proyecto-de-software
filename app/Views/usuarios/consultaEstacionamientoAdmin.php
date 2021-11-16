@@ -8,10 +8,18 @@
       <div class="col-12">
         <div class="card">
           <div class="card-header">
-            <h3 class="card-title">Estadias cargadas en el sistema</h3>
           </div>
+
+  <nav class="navbar navbar-light bg-light justify-content-between">
+  <a class="navbar-brand">Estadias cargadas en el sistema</a>
+      <form class="form-inline">
+        <input class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Search" onkeyup="buscar_ajax(this.value);">
+        <button class="btn btn-outline-success my-2 my-sm-0"><i class="fas fa-search-dollar"></i></button>
+      </form>
+    </nav>
           <!-- /.card-header -->
           <div class="card-body">
+            
             <div id="example2_wrapper" class="dataTables_wrapper dt-bootstrap4">
               <div class="row">
                 <div class="col-sm-12 col-md-6"></div>
@@ -70,5 +78,20 @@
                     </div>
                     
 
-                    
+                    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script>
+	function buscar_ajax(cadena){
+		$.ajax({
+		type: 'POST',
+		url: 'buscar.php',
+		data: 'cadena=' + cadena,
+		success: function(respuesta) {
+			//Copiamos el resultado en #mostrar
+			$('#mostrar').html(respuesta);
+	   }
+	});
+	}
+</script>
+
+
 <?= $this->endsection('content'); ?>

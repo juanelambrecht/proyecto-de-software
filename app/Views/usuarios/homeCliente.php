@@ -34,11 +34,9 @@
                                 <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="">
                                 Modelo</th>
                                 <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="">
-                                E. Indefinido</th>
+                                Estacionar</th>
                                 
-                                <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="">
-                                E. Pendiente
-                                </th>
+                               
                                 </tr>
                           </thead>
                           <tbody>
@@ -51,10 +49,8 @@
                                 <td><?= $vehiculo->marca; ?></td>
                                 <td><?= $vehiculo->modelo; ?></td>
                                 <td>
-                                    <a href="<?= base_url('estacionarIndefinido/' . $vehiculo->vehiculo_id); ?>" class="btn btn-outline-success" type="button"><i class="fa fa-key"></i></a>
-                                </td>
-                                <td>
-                                    <a href="<?= base_url('estacionarPendiente/' . $vehiculo->vehiculo_id); ?>" class="btn btn-outline-success" type="button"><i class="fa fa-key"></i></a>
+                                    <a href="<?= base_url('estacionarIndefinido/' . $vehiculo->vehiculo_id); ?>" class="btn btn-outline-success" type="button" ><i class="fa fa-spinner"></i> Indefinido</a>
+                                    <a href="<?= base_url('estacionarPendiente/' . $vehiculo->vehiculo_id); ?>" class="btn btn-outline-success" type="button"><i class="fa fa-user-clock"></i> Pendiente</a>
                                 </td>
 
 

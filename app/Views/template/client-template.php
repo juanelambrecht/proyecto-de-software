@@ -137,20 +137,20 @@
 
               <a href="./homeCliente" class="nav-link ">
 
-                <i class="far fa-circle nav-icon"></i>
+                <i class="nav-icon fas fa-home"></i>
                 <p> Inicio Cliente</p>
               </a>
             </li>
             <li class="nav-item">
               <a href="./altaVehiculo" class="nav-link">
-                <i class="nav-icon fas fa-users"></i>
+                <i class="nav-icon fas fa-car-side"></i>
                 <p>
                   Alta Vehiculo
                 </p>
               </a>
             <li class="nav-item">
               <a href="./estacionarVehiculo" class="nav-link">
-                <i class="nav-icon fas fa-car"></i>
+                <i class="nav-icon fas fa-parking"></i>
                 <p>
                   Estacionar Vehiculo
                 </p>
@@ -160,7 +160,7 @@
 
             <li class="nav-item">
               <a href="./desestacionarV" class="nav-link">
-                <i class="nav-icon fas fa-car"></i>
+                <i class="nav-icon fas fa-calendar-times"></i>
                 <p>
                   Desestacionar Vehiculo
                   <span class="badge badge-info right"></span>
