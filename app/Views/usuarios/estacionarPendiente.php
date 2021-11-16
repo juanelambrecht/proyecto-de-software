@@ -23,13 +23,6 @@
                 <label for="usuario" class="form-label">Patente </label>
                 <input type="text" value="<?= $vehiculo->patente?>" class="form-control" name="patente" pattern="^([A-Z]{3}-[0-9]{3})?([A-HJ-NP-TV-Z]{2}-[0-9]{3}-[A-HJ-NP-TV-Z]{2})?$" />
             </div>
-            <div>
-                <h4>Patrones permitidos</h4>
-                <ul>
-                    <li>AAA-123</li>
-                    <li>AA-123-AA</li>
-                </ul>
-            </div>
             <div class="mb-3">
                 <label for="contraseña" class="form-label">Hora Inicio </label>
                 <input type="time" class="form-control" id="hora_inicio" name="hora_inicio" required>
@@ -56,8 +49,10 @@
             </div>
             <br>
             <a href=""><button type="submit" class="btn btn-primary">Vender</button></a>
-
+            
         </form>
+        <br>
+        <a href="../homeCliente"><button class="btn btn-secondary">Cancelar</button></a>
     </div>
 </div>
 
