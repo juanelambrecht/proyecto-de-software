@@ -24,7 +24,7 @@ class RoleValidationFilter implements FilterInterface
         '1' => array('api', 'precio', 'usuarios', 'actualizar', 'guardar', 'listar', 'venderEstadiaAdmin', 'venderNuevaEstadiaAdmin', 'editar', 'crear', 'borrar', 'resetPass', 'consultaEstacionamientoAdmin'),
         '2' => array('homeInspector', 'usuarios', 'inspectores', 'consultaEstacionamiento'),
         '3' => array('api', 'precio', 'homeVendedor', 'usuarios', 'vendedor', 'venderEstadia', 'venderNuevaEstadia'),
-        '4' => array('usuarios', 'homeCliente', 'usuarios', 'altaVehiculo', 'altaNuevoVehiculo', 'desestacionarV', 'desestacionarVehiculo','estacionarGuardaVehiculo','estacionarVehiculo','estacionarIndefinido','venderEstadiaIndefinido','estacionarNuevoPendiente','estacionarPendiente'),
+        '4' => array('usuarios', 'homeCliente', 'usuarios', 'altaVehiculo', 'altaNuevoVehiculo', 'desestacionarV', 'desestacionarVehiculo','estacionarGuardaVehiculo','estacionarVehiculo','comprarNuevaEstadia','estacionarIndefinido','venderEstadiaIndefinido','estacionarNuevoPendiente','estacionarPendiente'),
     );
     public $rol_no_puede = array(
         '1' => array(),

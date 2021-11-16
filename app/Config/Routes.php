@@ -73,14 +73,17 @@ $routes->get('desestacionarVehiculo/(:num)', 'Usuarios::desestacionarVehiculo/$1
 $routes->get('estacionarIndefinido/(:num)', 'Usuarios::estacionarIndefinido/$1');
 $routes->get('estacionarPendiente/(:num)','Usuarios::estacionarPendiente/$1');
 
+
 $routes->post('estacionarNuevoPendiente','Usuarios::estacionarNuevoPendiente');
 $routes->post('venderEstadiaIndefinido','Usuarios::venderEstadiaIndefinido');
+
 $routes->post('guardar', 'Usuarios::guardar');
 $routes->post('actualizar', 'Usuarios::actualizar');
 $routes->post('altaNuevoVehiculo', 'Usuarios::altaNuevoVehiculo');
 $routes->post('venderNuevaEstadiaAdmin', 'Usuarios::venderEstadiaAdmin');
 $routes->post('venderNuevaEstadia', 'Vendedor::venderNuevaEstadia');
-$routes->post('venderNuevaEstadia', 'Usuarios::estacionarGuardaVehiculo');
+
+$routes->post('comprarNuevaEstadia', 'Usuarios::estacionarGuardaVehiculo');
 
 
 
