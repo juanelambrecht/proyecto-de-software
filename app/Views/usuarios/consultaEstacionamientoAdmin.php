@@ -12,10 +12,10 @@
 
   <nav class="navbar navbar-light bg-light justify-content-between">
   <a class="navbar-brand">Estadias cargadas en el sistema</a>
-      <form class="form-inline">
-        <input class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Search" onkeyup="buscar_ajax(this.value);">
-        <button class="btn btn-outline-success my-2 my-sm-0"><i class="fas fa-search-dollar"></i></button>
-      </form>
+  <form class="" action="<?= site_url('/consultaEstacionamientoAdmin') ?>" method="post">
+        <input class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Search" id="buscar">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fas fa-search-dollar"></i></button>
+</form>
     </nav>
           <!-- /.card-header -->
           <div class="card-body">
@@ -78,20 +78,6 @@
                     </div>
                     
 
-                    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-<script>
-	function buscar_ajax(cadena){
-		$.ajax({
-		type: 'POST',
-		url: 'buscar.php',
-		data: 'cadena=' + cadena,
-		success: function(respuesta) {
-			//Copiamos el resultado en #mostrar
-			$('#mostrar').html(respuesta);
-	   }
-	});
-	}
-</script>
 
-
+<div id="mostrar"> <p id="totalToPay"></p></div>
 <?= $this->endsection('content'); ?>

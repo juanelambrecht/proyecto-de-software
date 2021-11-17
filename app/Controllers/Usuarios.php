@@ -54,6 +54,7 @@ class Usuarios extends BaseController
         $datos['usuarios'] = $usuario->orderBy('id', 'ASC')->findAll();
         return view('usuarios/consultaEstacionamientoAdmin', $datos);
     }
+    
     public function crear()
     {
         $rol = new Rol();
@@ -290,9 +291,10 @@ class Usuarios extends BaseController
                 return redirect()->to('/homeCliente');
             }
         } else {
-            session()->set(array('error' => 'Error Usuario o Contraseña Invalidos'));
-            session()->markAsFlashdata('error');
-            return redirect()->to('/login');
+            //session()->set(array('error' => 'Error Usuario o Contraseña Invalidos'));
+            //session()->markAsFlashdata('error');
+            session()->setFlashData('mensaje','error');
+            return redirect()->to('/login#about');
         }
     }
 

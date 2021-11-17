@@ -61,7 +61,7 @@
                                 </td>
                                 <td>
                                   <a href="<?= base_url('editar/' . $usuario->id); ?>" class="btn btn-outline-secondary"><i class="fa fa-edit"></i></a>
-                                  <a href="<?= base_url('borrar/' . $usuario->id); ?>" class="btn btn-outline-danger" type="button"><i class="fa fa-trash"></i></a>
+                                 <a href="<?= base_url('borrar/' . $usuario->id); ?>" class="btn btn-outline-danger" type="button"><i class="fa fa-trash"></i></a>
                                   <a href="<?= base_url('resetPass/' . $usuario->id); ?>" class="btn btn-outline-success" type="button"><i class="fa fa-key"></i></a>
                                 </td>
 
@@ -72,4 +72,25 @@
                         </table>
                       </div>
                     </div>
+
+<script>
+  $('.btn btn-outline-danger').on("click", function() {
+    Swal.fire({
+  title: 'Confirmacion',
+  icon: 'question',
+  iconHtml: '؟',
+  confirmButtonText: 'Si',
+  cancelButtonText: 'No',
+  showCancelButton: true,
+  showCloseButton: true
+});
+function(isConfirm) {
+      if (isConfirm) {
+        swal("Eliminado!", "Su cliente ha sido eliminado!", "success");
+        window.location.replace(url);
+      } else {
+        swal("Cancelado", "Su cliente está a salvo! :)", "error");
+      }
+});
+</script>
 <?= $this->endsection('content');?>

@@ -1,5 +1,18 @@
 <?= $this->extend('template/home-template'); ?>
 <?= $this->section('content'); ?>
+
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script>
+    <?php if(session()->getFlashData('mensaje')){ ?> 
+    Swal.fire({
+  icon: 'error',
+  title: 'Algo Salio Mal...',
+  text: 'Usuario y/o contraseña incorrecta...',
+  footer: '<a href="#registro">Todavia no se encuentra registrado?</a>'
+})
+
+<?php } ?>
+    </script>
 <div class="container">
   <br><br>
   <section class="vh-100">

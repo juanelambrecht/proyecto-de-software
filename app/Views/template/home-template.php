@@ -18,6 +18,7 @@
 
   <!-- Vendor CSS Files -->
   <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="<?= base_url('assets/libs/sweet/dist/sweetalert2.min.css')?>" rel="stylesheet">
   <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
   <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
@@ -49,7 +50,7 @@
       <ul>
         <li><a href="#hero" class="nav-link scrollto"><i class="bx bx-home"></i> <span>Home</span></a></li>
         <li><a href="#about" class="nav-link scrollto active"><i class="bx bx-book-content"></i> <span>Login</span></a></li>
-        <li><a href="#contact" class="nav-link scrollto"><i class="bx bx-server"></i> <span>Registrarse</span></a></li>
+        <li><a href="#registro" class="nav-link scrollto"><i class="bx bx-server"></i> <span>Registrarse</span></a></li>
       </ul>
     </nav><!-- .nav-menu -->
 
@@ -85,7 +86,7 @@
     </section><!-- End About Section -->
 
     <!-- ======= Contact Section ======= -->
-    <section id="contact" class="contact">
+    <section id="registro" class="contact">
       <div class="container" data-aos="fade-up">
 
         <div class="section-title">
@@ -177,7 +178,7 @@
   <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
   <script src="assets/vendor/typed.js/typed.min.js"></script>
   <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
-
+  <script src="<?= base_url('assets/libs/sweet/dist/sweetalert2.min.js')?>"></script>
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
 
