@@ -32,10 +32,10 @@ class Usuarios extends BaseController
     {
         $userSessionID = session()->get('id');
         $cliente = new Cliente();
-        $datos['cliente'] = $cliente->where('usuario_id',$userSessionID)->first();
+        $datos['cliente'] = $cliente->where('usuario_id', $userSessionID)->first();
         $vehiculo = new Vehiculo();
-        $datos['vehiculos'] = $vehiculo->orderBy('vehiculo_id','ASC')->findAll();
-        
+        $datos['vehiculos'] = $vehiculo->orderBy('vehiculo_id', 'ASC')->findAll();
+
         return view('usuarios/homeCliente', $datos);
     }
 
@@ -54,7 +54,7 @@ class Usuarios extends BaseController
         $datos['usuarios'] = $usuario->orderBy('id', 'ASC')->findAll();
         return view('usuarios/consultaEstacionamientoAdmin', $datos);
     }
-    
+
     public function crear()
     {
         $rol = new Rol();
@@ -70,24 +70,24 @@ class Usuarios extends BaseController
         $datos['zonas'] = $zona->orderBy('id', 'ASC')->findAll();
         return view('usuarios/estacionarVehiculo', $datos);
     }
-    public function estacionarIndefinido($id){
+    public function estacionarIndefinido($id)
+    {
         $vehiculo = new Vehiculo();
-        $datos['vehiculo'] = $vehiculo->where('vehiculo_id',$id)->first();
+        $datos['vehiculo'] = $vehiculo->where('vehiculo_id', $id)->first();
 
         $zona = new Zona();
         $datos['zonas'] = $zona->orderBy('id', 'ASC')->findAll();
-        return view('usuarios/estacionarIndefinido',$datos);
-
+        return view('usuarios/estacionarIndefinido', $datos);
     }
-    public function estacionarPendiente($id){
+    public function estacionarPendiente($id)
+    {
         $vehiculo = new Vehiculo();
-        $datos['vehiculo'] = $vehiculo->where('vehiculo_id',$id)->first();
+        $datos['vehiculo'] = $vehiculo->where('vehiculo_id', $id)->first();
 
         $zona = new Zona();
         $datos['zonas'] = $zona->orderBy('id', 'ASC')->findAll();
-        
-        return view('usuarios/estacionarPendiente',$datos);
 
+        return view('usuarios/estacionarPendiente', $datos);
     }
     public function estacionarNuevoPendiente()
     {
@@ -204,7 +204,8 @@ class Usuarios extends BaseController
     {
 
         $usuario = new Usuario();
-        $datos = [
+        $cliente = new Cliente();
+        $datosU = [
             'nombre' => $this->request->getVar('nombre'),
             'email' => $this->request->getVar('email'),
             'apellido' => $this->request->getVar('apellido'),
@@ -214,9 +215,16 @@ class Usuarios extends BaseController
             'contraseña' => $this->request->getVar('contraseña'),
             'id_rol' => $this->request->getVar('rol')
         ];
+        $usuario->insert($datosU);
 
-        $usuario->insert($datos);
-
+        if ($this->request->getVar('rol') == 4) {
+            $idUsuario = $usuario->where('username', $this->request->getVar('usuario'))->first();
+            $datosC = [
+                'usuario_id' => $idUsuario->id,
+                'saldo' => 200
+            ];
+            $cliente->insert($datosC);
+        }
         return $this->response->redirect(site_url('/listar'));
     }
 
@@ -293,7 +301,7 @@ class Usuarios extends BaseController
         } else {
             //session()->set(array('error' => 'Error Usuario o Contraseña Invalidos'));
             //session()->markAsFlashdata('error');
-            session()->setFlashData('mensaje','error');
+            session()->setFlashData('mensaje', 'error');
             return redirect()->to('/login#about');
         }
     }
