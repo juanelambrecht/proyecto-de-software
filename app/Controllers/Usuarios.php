@@ -120,7 +120,15 @@ class Usuarios extends BaseController
         $estadia->insert($newData);
         return $this->response->redirect(site_url('/homeCliente'));
     }
+
     public function venderEstadiaAdmin()
+    {
+        $zona = new Zona();
+        $datos['zonas'] = $zona->orderBy('id', 'ASC')->findAll();
+        return view('usuarios/venderEstadia', $datos);
+    }
+
+    public function venderNuevaEstadiaAdmin()
     {
         // Get user session ID
         $userSessionID = session()->get('id');

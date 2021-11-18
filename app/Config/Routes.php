@@ -54,7 +54,7 @@ $routes->get('listar', 'Usuarios::index');
 
 $routes->get('login', 'Usuarios::login');
 $routes->get('crear', 'Usuarios::crear');
-$routes->get('venderEstadiaAdmin', 'Usuarios::venderEstadia');
+$routes->get('venderEstadiaAdmin', 'Usuarios::venderEstadiaAdmin');
 $routes->get('consultarPrecio', 'Usuarios::consultarPrecio');
 $routes->get('venderEstadia', 'Vendedor::venderEstadia');
 $routes->get('estacionarVehiculo', 'Usuarios::estacionarVehiculo');
@@ -71,11 +71,11 @@ $routes->get('altaVehiculo', 'Usuarios::altaVehiculo');
 $routes->get('desestacionarV', 'Usuarios::desestacionarV');
 $routes->get('desestacionarVehiculo/(:num)', 'Usuarios::desestacionarVehiculo/$1');
 $routes->get('estacionarIndefinido/(:num)', 'Usuarios::estacionarIndefinido/$1');
-$routes->get('estacionarPendiente/(:num)','Usuarios::estacionarPendiente/$1');
+$routes->get('estacionarPendiente/(:num)', 'Usuarios::estacionarPendiente/$1');
 
 
-$routes->post('estacionarNuevoPendiente','Usuarios::estacionarNuevoPendiente');
-$routes->post('venderEstadiaIndefinido','Usuarios::venderEstadiaIndefinido');
+$routes->post('estacionarNuevoPendiente', 'Usuarios::estacionarNuevoPendiente');
+$routes->post('venderEstadiaIndefinido', 'Usuarios::venderEstadiaIndefinido');
 
 $routes->post('guardar', 'Usuarios::guardar');
 $routes->post('actualizar', 'Usuarios::actualizar');

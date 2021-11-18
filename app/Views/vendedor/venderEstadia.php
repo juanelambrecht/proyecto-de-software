@@ -40,18 +40,18 @@
                 <input type="text" class="form-control" name="dni">
             </div> -->
             <br>
-            <button type="button" onclick="calcularPrecio()" class="btn btn-primary">Consultar Precio</button>
-            <div id="div-precio">
-                <p id="totalToPay"></p>
+            <div style="display: flex;">
+                <button type="button" onclick="calcularPrecio()" class="btn btn-primary">Consultar Precio</button>
+                <button id="totalToPay" style="margin-left: 5px;font-weight: bold;visibility: hidden;" type="button" class="btn btn-outline-info" disabled></button>
             </div>
             <br>
             <a href=""><button type="submit" class="btn btn-primary">Vender</button></a>
-
         </form>
     </div>
 </div>
 <script>
     function calcularPrecio(zonaId, horaIni, horaFin) {
+        document.getElementById("totalToPay").style.visibility = 'visible';
         zonaId = document.getElementById("zona").value;
         horaIni = document.getElementById("hora_inicio").value;
         horaFin = document.getElementById("hora_fin").value;
