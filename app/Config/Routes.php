@@ -71,12 +71,8 @@ $routes->get('altaVehiculo', 'Usuarios::altaVehiculo');
 $routes->get('desestacionarV', 'Usuarios::desestacionarV');
 $routes->get('desestacionarVehiculo/(:num)', 'Usuarios::desestacionarVehiculo/$1');
 $routes->get('estacionarIndefinido/(:num)', 'Usuarios::estacionarIndefinido/$1');
-<<<<<<< HEAD
 $routes->get('estacionarPendiente/(:num)','Usuarios::estacionarPendiente/$1');
 $routes->get('editarPerfil/(:num)', 'Usuarios::editarPerfil/$1');
-=======
-$routes->get('estacionarPendiente/(:num)', 'Usuarios::estacionarPendiente/$1');
->>>>>>> f390790c3117a00d275f3c4ac8216d5f3e981c97
 
 
 $routes->post('estacionarNuevoPendiente', 'Usuarios::estacionarNuevoPendiente');
