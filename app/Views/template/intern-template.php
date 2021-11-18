@@ -46,7 +46,7 @@
     <nav id="navbar" class="navbar nav-menu">
       <ul>
         <li><a href="javascript:history.back(-1);" class="nav-link scrollto"><i class="bx bx-home"></i> <span>Home</span></a></li>
-        <li><a href="#about" class="nav-link scrollto active"><i class="bx bx-user"></i> <span>Edicion Usuario</span></a></li>
+        <li><a href="#about" class="nav-link scrollto active"><i class="bx bx-user"></i> <span>Section</span></a></li>
 
       </ul>
     </nav><!-- .nav-menu -->
@@ -60,7 +60,7 @@
       <div class="container" data-aos="fade-up">
 
         <div class="section-title">
-          <h2>Edicion Usuario</h2>
+          <h2></h2>
            </div>
 
            <?= $this->renderSection('content');?>

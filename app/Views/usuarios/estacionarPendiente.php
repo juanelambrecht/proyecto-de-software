@@ -1,4 +1,4 @@
-<?= $this->extend('/template/client-template'); ?>
+<?= $this->extend('/template/intern-template'); ?>
 <?= $this->section('content'); ?>
 <section class="content">
 <div class="row justify-content-md-center">
@@ -7,7 +7,7 @@
 
             <div class="mb-3">
                 <label for="usuario" class="form-label">Patente </label>
-                <input type="text" value="<?= $vehiculo->patente?>" class="form-control" name="patente" pattern="^([A-Z]{3}-[0-9]{3})?([A-HJ-NP-TV-Z]{2}-[0-9]{3}-[A-HJ-NP-TV-Z]{2})?$" />
+                <input type="text" readonly value="<?= $vehiculo->patente?>" class="form-control" name="patente" pattern="^([A-Z]{3}-[0-9]{3})?([A-HJ-NP-TV-Z]{2}-[0-9]{3}-[A-HJ-NP-TV-Z]{2})?$" />
             </div>
             <div class="mb-3">
                 <label for="contraseña" class="form-label">Hora Inicio </label>
@@ -28,34 +28,12 @@
                     <?php endforeach; ?>
                 </select>
             </div>
-            <br>
-            <button type="button" onclick="calcularPrecio()" class="btn btn-primary">Consultar Precio</button>
-            <div id="div-precio">
-                <p id="totalToPay"></p>
-            </div>
+            
             <br>
             <a href=""><button type="submit" class="btn btn-primary">Vender</button></a>
             
         </form>
-        </div>
+        <br>
     </div>
-
-
-<script>
-    function calcularPrecio(zonaId, horaIni, horaFin) {
-        zonaId = document.getElementById("zona").value;
-        horaIni = document.getElementById("hora_inicio").value;
-        horaFin = document.getElementById("hora_fin").value;
-        url = "<?= base_url('api/estadiacontroller/precio/') ?>" +
-            "/" + zonaId + "/" + horaIni + "/" + horaFin;
-        $.ajax({
-            url: url,
-            dataType: 'json',
-            method: 'GET'
-        }).then(function(data) {
-            console.log(data);
-            document.getElementById("totalToPay").innerHTML = '$ ' + data;
-        });
-    }
-</script>
+</div>
 <?= $this->endsection('content');?>

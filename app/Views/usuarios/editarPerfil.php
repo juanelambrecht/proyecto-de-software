@@ -1,8 +1,8 @@
 
-<?php if($usuario->id_rol == 1) echo ($this->extend("/template/admin-template")); ?>
-<?php if($usuario->id_rol == 2) echo ($this->extend("/template/inspector-template")); ?>
-<?php if($usuario->id_rol == 3) echo ($this->extend("/template/vendedor-template")); ?>
-<?php if($usuario->id_rol == 4) echo ($this->extend("/template/client-template")); ?>
+<?php if($usuario->id_rol == 1) echo ($this->extend("/template/intern-template")); ?>
+<?php if($usuario->id_rol == 2) echo ($this->extend("/template/intern-template")); ?>
+<?php if($usuario->id_rol == 3) echo ($this->extend("/template/intern-template")); ?>
+<?php if($usuario->id_rol == 4) echo ($this->extend("/template/intern-template")); ?>
 <?=$this->section('content');?>
 <br><br>
 <div class="row justify-content-md-center">
@@ -45,6 +45,7 @@
             <br>
             <button type="submit" class="btn btn-primary">Enviar</button>
         </form>
+
     </div>
 </div>
 <br><br>

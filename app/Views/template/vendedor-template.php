@@ -135,19 +135,19 @@
                with font-awesome or any other icon font library -->
                         <li class="nav-item menu-open">
                             <a href="./homeVendedor" class="nav-link ">
-                                <i class="far fa-circle nav-icon"></i>
+                                <i class="nav-icon fas fa-house-user"></i>
                                 <p>Pantalla Inicio</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="./venderEstadia" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
+                                <i class="nav-icon fas fa-parking"></i>
                                 <p>Vender Estadia</p>
                             </a>
                         </li>
 
                         <li class="nav-item">
-                      <a href="/editarPerfil/<?php echo(session()->get('id')); ?>" class="nav-link">
+                      <a href="./editarPerfil/<?php echo(session()->get('id')); ?>" class="nav-link">
                          <i class="nav-icon fas fa-users-cog"></i>
                       <p>Administrar Perfil</p>
                       </a>

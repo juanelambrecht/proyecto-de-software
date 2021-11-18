@@ -44,7 +44,7 @@
             </div>
             <br>
             <a href=""><button type="submit" class="btn btn-primary">Vender</button></a>
-
+            
         </form>
     </div>
 </div>

@@ -169,7 +169,7 @@
 
             </li>
             <li class="nav-item">
-              <a href="./editarPerfil/<?php echo(session()->get('id')); ?>" class="nav-link">
+              <a href="./editarPerfil/<?php echo(session()->get('id'));?>" class="nav-link">
                 <i class="nav-icon fas fa-users-cog"></i>
                 <p>Administrar Perfil</p>
               </a>

@@ -50,7 +50,7 @@ class Vendedor extends BaseController
         // Inserto el nuevo precio 
         $newData = array_merge($datos, array("pesosTotal" => $pesosTotal));
         $estadia->insert($newData);
-        return $this->response->redirect(site_url('vendedor/venderEstadia'));
+        return $this->response->redirect(site_url('/venderEstadia'));
     }
 
     public function consultarPrecio()

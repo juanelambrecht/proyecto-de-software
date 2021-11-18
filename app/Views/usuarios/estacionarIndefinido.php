@@ -1,4 +1,4 @@
-<?= $this->extend('/template/client-template'); ?>
+<?= $this->extend('/template/intern-template'); ?>
 <?= $this->section('content'); ?>
 
     <div class="container" style="margin-top: 20px">
@@ -26,10 +26,10 @@
                 </select>
             </div>
             <a href=""><button type="submit" class="btn btn-primary">Vender</button></a>
-                            
+                    
         </form>
         <br>
-        <a href="../homeCliente"><button class="btn btn-secondary">Cancelar</button></a>
+        
     </div>
 </div>
 </div>
