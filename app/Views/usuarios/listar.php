@@ -61,7 +61,7 @@
                                 </td>
                                 <td>
                                   <a href="<?= base_url('editar/' . $usuario->id); ?>" class="btn btn-outline-secondary"><i class="fa fa-edit"></i></a>
-                                 <a href="<?= base_url('borrar/' . $usuario->id); ?>" class="btn btn-outline-danger" type="button"><i class="fa fa-trash"></i></a>
+                                  <a href="<?= base_url('borrar/' . $usuario->id); ?>" class="btn btn-outline-danger" type="button"><i class="fa fa-trash"></i></a>
                                   <a href="<?= base_url('resetPass/' . $usuario->id); ?>" class="btn btn-outline-success" type="button"><i class="fa fa-key"></i></a>
                                 </td>
 

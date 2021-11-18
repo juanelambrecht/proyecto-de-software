@@ -237,6 +237,21 @@ class Usuarios extends BaseController
         return view('usuarios/editar', $datos);
     }
 
+    
+    public function editarPerfil($id = null)
+    {
+        $usuario = new Usuario();
+        $datos['usuario'] = $usuario->where('id', $id)->first();
+        $rol = new Rol();
+        $datos['roles'] = $rol->orderBy('id', 'ASC')->findAll();
+       // $path = APPPATH .'views/template/'; // {$this->theme}
+
+        //$view = \Config\Services::renderer($path, null, false); 
+
+        //return $view->setVar('data', $datos)->render('usuarios/editarPerfil'); 
+        return view('usuarios/editarPerfil', $datos);
+    }
+
     public function actualizar()
     {
         $usuario = new Usuario();
@@ -254,6 +269,37 @@ class Usuarios extends BaseController
         $usuario->update($id, $datos);
         return $this->response->redirect(site_url('../listar'));
     }
+
+    public function actualizarPerfil()
+    {
+        $usuario = new Usuario();
+        $datos = [
+            'nombre' => $this->request->getVar('nombre'),
+            'email' => $this->request->getVar('email'),
+            'apellido' => $this->request->getVar('apellido'),
+            'username' => $this->request->getVar('usuario'),
+            // 'contraseña' => $this->request->getVar('contraseña'),
+            'dni' => $this->request->getVar('dni'),
+            'fecha_nacimiento' => $this->request->getVar('fecha_nacimiento'),
+        ];
+        $id = $this->request->getVar('id');
+        $usuario->update($id, $datos);
+        print_r($id);
+        if ($id == 1) {
+            return $this->response->redirect(site_url('./listar'));
+        }
+        if ($id == 2) {
+            return $this->response->redirect(site_url('/consultaEstacionamiento'));
+        }
+        if ($id == 3) {
+            return $this->response->redirect(site_url('/homeVendedor'));
+        }
+        if ($id == 4) {
+            return $this->response->redirect(site_url('./homeCliente'));
+        }
+    }
+
+    
 
 
     public function login()

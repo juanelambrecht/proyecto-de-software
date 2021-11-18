@@ -145,12 +145,13 @@
                                 <p>Vender Estadia</p>
                             </a>
                         </li>
+
                         <li class="nav-item">
-                            <a href="pages/widgets.html" class="nav-link">
-                                <i class="nav-icon fas fa-copy"></i>
-                                <p>Administrar Perfil</p>
-                            </a>
-                        </li>
+                      <a href="/editarPerfil/<?php echo(session()->get('id')); ?>" class="nav-link">
+                         <i class="nav-icon fas fa-users-cog"></i>
+                      <p>Administrar Perfil</p>
+                      </a>
+                    </li>
 
                 </nav>
                 <!-- /.sidebar-menu -->

@@ -72,6 +72,7 @@ $routes->get('desestacionarV', 'Usuarios::desestacionarV');
 $routes->get('desestacionarVehiculo/(:num)', 'Usuarios::desestacionarVehiculo/$1');
 $routes->get('estacionarIndefinido/(:num)', 'Usuarios::estacionarIndefinido/$1');
 $routes->get('estacionarPendiente/(:num)','Usuarios::estacionarPendiente/$1');
+$routes->get('editarPerfil/(:num)', 'Usuarios::editarPerfil/$1');
 
 
 $routes->post('estacionarNuevoPendiente','Usuarios::estacionarNuevoPendiente');
@@ -84,7 +85,7 @@ $routes->post('venderNuevaEstadiaAdmin', 'Usuarios::venderEstadiaAdmin');
 $routes->post('venderNuevaEstadia', 'Vendedor::venderNuevaEstadia');
 
 $routes->post('comprarNuevaEstadia', 'Usuarios::estacionarGuardaVehiculo');
-
+$routes->post('actualizarPerfil', 'Usuarios::actualizarPerfil');
 
 
 $routes->get('precio', 'EstadiaController::precio');
