@@ -47,6 +47,7 @@
             <br>
             <a href="listar.php"><button type="submit" class="btn btn-primary">Enviar</button></a>
         </form>
+        <br>
     </div>
 </div>
 <?= $this->endsection('content');
