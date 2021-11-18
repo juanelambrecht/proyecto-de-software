@@ -12,9 +12,9 @@
 
   <nav class="navbar navbar-light bg-light justify-content-between">
   <a class="navbar-brand">Estadias cargadas en el sistema</a>
-  <form class="" action="<?= site_url('/consultaEstacionamientoAdmin') ?>" method="post">
+ <!-- <form class="" action="" method="post">
         <input class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Search" id="buscar">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fas fa-search-dollar"></i></button>
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fas fa-search-dollar"></i></button> -->
 </form>
     </nav>
           <!-- /.card-header -->

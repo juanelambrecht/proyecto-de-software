@@ -157,12 +157,12 @@
                 </p>
               </a>
             </li>
-            <li class="nav-item">
+         <!--    <li class="nav-item">
               <a href="./venderEstadiaAdmin" class="nav-link">
                 <i class="nav-icon fas fa-cart-arrow-down"></i>
                 <p>Vender Estadia</p>
               </a>
-            </li>
+            </li> -->
             <li class="nav-item">
               <a href="./editarPerfil/<?php echo(session()->get('id')); ?>" class="nav-link">
                 <i class="nav-icon fas fa-users-cog"></i>
