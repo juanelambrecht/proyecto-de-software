@@ -253,17 +253,14 @@ class Usuarios extends BaseController
         return view('usuarios/editar', $datos);
     }
 
-    
     public function editarPerfil($id = null)
     {
         $usuario = new Usuario();
         $datos['usuario'] = $usuario->where('id', $id)->first();
         $rol = new Rol();
         $datos['roles'] = $rol->orderBy('id', 'ASC')->findAll();
-       // $path = APPPATH .'views/template/'; // {$this->theme}
-
+        // $path = APPPATH .'views/template/'; // {$this->theme}
         //$view = \Config\Services::renderer($path, null, false); 
-
         //return $view->setVar('data', $datos)->render('usuarios/editarPerfil'); 
         return view('usuarios/editarPerfil', $datos);
     }
@@ -314,9 +311,6 @@ class Usuarios extends BaseController
             return $this->response->redirect(site_url('./homeCliente'));
         }
     }
-
-    
-
 
     public function login()
     {
@@ -448,6 +442,28 @@ class Usuarios extends BaseController
             'pesosTotal' => $pesosTotal,
         ];
         $estadia->update($id, $datos1);
+        return $this->response->redirect(site_url('/homeCliente'));
+    }
+
+    public function ingresarSaldo()
+    {
+
+        return view('usuarios/ingresarSaldo');
+    }
+
+    public function cargarSaldo($id = null)
+    {
+        $userSessionID = session()->get('id');
+        $cliente = new Cliente();
+        //busco cliente
+        $datos = $cliente->where('usuario_id', $userSessionID)->first();
+        $clienteID = $datos['cliente_id'];
+        //calculo nuevo saldo
+        $saldoIngresado = $this->request->getVar('monto');
+        $saldoTotal = ($saldoIngresado + $datos['saldo']);
+        $data = ['saldo' => $saldoTotal];
+        //updateo cliente con nuevo saldo
+        $cliente->update($clienteID, $data);
         return $this->response->redirect(site_url('/homeCliente'));
     }
 }

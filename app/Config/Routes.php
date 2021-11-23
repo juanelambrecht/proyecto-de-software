@@ -68,16 +68,17 @@ $routes->get('resetPass/(:num)', 'Usuarios::resetPass/$1');
 $routes->get('consultaEstacionamiento', 'Inspectores::listarEstacionamiento');
 $routes->get('consultaEstacionamientoAdmin', 'Usuarios::listarEstacionamiento');
 $routes->get('altaVehiculo', 'Usuarios::altaVehiculo');
+$routes->get('ingresarSaldo', 'Usuarios::ingresarSaldo');
 $routes->get('desestacionarV', 'Usuarios::desestacionarV');
 $routes->get('desestacionarVehiculo/(:num)', 'Usuarios::desestacionarVehiculo/$1');
 $routes->get('estacionarIndefinido/(:num)', 'Usuarios::estacionarIndefinido/$1');
-$routes->get('estacionarPendiente/(:num)','Usuarios::estacionarPendiente/$1');
+$routes->get('estacionarPendiente/(:num)', 'Usuarios::estacionarPendiente/$1');
 $routes->get('editarPerfil/(:num)', 'Usuarios::editarPerfil/$1');
 $routes->get('altaInfraccion', 'Inspectores::altaInfraccion');
 
 $routes->post('estacionarNuevoPendiente', 'Usuarios::estacionarNuevoPendiente');
 $routes->post('venderEstadiaIndefinido', 'Usuarios::venderEstadiaIndefinido');
-$routes->post('nuevaInfraccion','Inspectores::nuevaInfraccion');
+$routes->post('nuevaInfraccion', 'Inspectores::nuevaInfraccion');
 
 $routes->post('guardar', 'Usuarios::guardar');
 $routes->post('actualizar', 'Usuarios::actualizar');
@@ -87,6 +88,7 @@ $routes->post('venderNuevaEstadia', 'Vendedor::venderNuevaEstadia');
 
 $routes->post('comprarNuevaEstadia', 'Usuarios::estacionarGuardaVehiculo');
 $routes->post('actualizarPerfil', 'Usuarios::actualizarPerfil');
+$routes->post('cargarSaldo', 'Usuarios::cargarSaldo');
 
 
 $routes->get('precio', 'EstadiaController::precio');

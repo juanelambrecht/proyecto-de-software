@@ -19,12 +19,76 @@ class RoleValidationFilter implements FilterInterface
         'welcome_message',
         '/errors/error_403',
     );
-    // 1 => Admin, 2=>Inspector, 3=>Vendedor, 4=>Cliente
+    // 1 => Admin // 2=> Inspector, // 3=> Vendedor, // 4=> Cliente
     public $rol_permisos = array(
-        '1' => array('api', 'precio', 'usuarios', 'actualizar', 'guardar', 'listar', 'venderEstadiaAdmin', 'venderNuevaEstadiaAdmin', 'editar', 'crear', 'borrar', 'resetPass', 'consultaEstacionamientoAdmin','editarPerfil','intern-template','actualizarPerfil'),
-        '2' => array('homeInspector','editarPerfil','actualizarPerfil', 'usuarios', 'inspectores', 'consultaEstacionamiento','intern-template','altaInfraccion','nuevaInfraccion'),
-        '3' => array('api', 'precio','editarPerfil','actualizarPerfil', 'homeVendedor', 'usuarios', 'vendedor', 'venderEstadia', 'venderNuevaEstadia','intern-template'),
-        '4' => array('usuarios', 'homeCliente', 'usuarios', 'altaVehiculo', 'altaNuevoVehiculo', 'desestacionarV', 'desestacionarVehiculo','estacionarGuardaVehiculo','estacionarVehiculo','comprarNuevaEstadia','estacionarIndefinido','venderEstadiaIndefinido','estacionarNuevoPendiente','estacionarPendiente','actualizarPerfil','editarPerfil','intern-template','api','precio'),
+        // 1 => Admin
+        '1' => array(
+            'api',
+            'precio',
+            'usuarios',
+            'actualizar',
+            'guardar',
+            'listar',
+            'venderEstadiaAdmin',
+            'venderNuevaEstadiaAdmin',
+            'editar',
+            'crear',
+            'borrar',
+            'resetPass',
+            'consultaEstacionamientoAdmin',
+            'editarPerfil',
+            'intern-template',
+            'actualizarPerfil'
+        ),
+        // 2=> Inspector
+        '2' => array(
+            'homeInspector',
+            'editarPerfil',
+            'actualizarPerfil',
+            'usuarios',
+            'inspectores',
+            'consultaEstacionamiento',
+            'intern-template',
+            'altaInfraccion',
+            'nuevaInfraccion'
+        ),
+        // 3=> Vendedor
+        '3' => array(
+            'api',
+            'precio',
+            'editarPerfil',
+            'actualizarPerfil',
+            'homeVendedor',
+            'usuarios',
+            'vendedor',
+            'venderEstadia',
+            'venderNuevaEstadia',
+            'intern-template'
+        ),
+        // 4=> Cliente
+        '4' => array(
+            'usuarios',
+            'homeCliente',
+            'usuarios',
+            'altaVehiculo',
+            'altaNuevoVehiculo',
+            'desestacionarV',
+            'desestacionarVehiculo',
+            'estacionarGuardaVehiculo',
+            'estacionarVehiculo',
+            'comprarNuevaEstadia',
+            'estacionarIndefinido',
+            'venderEstadiaIndefinido',
+            'estacionarNuevoPendiente',
+            'estacionarPendiente',
+            'actualizarPerfil',
+            'editarPerfil',
+            'intern-template',
+            'api',
+            'precio',
+            'ingresarSaldo',
+            'cargarSaldo',
+        ),
     );
     public $rol_no_puede = array(
         '1' => array(),

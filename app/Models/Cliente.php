@@ -16,9 +16,6 @@ class Cliente extends Model
     protected $useTimestamps = false;
     protected $allowedFields = [
         'usuario_id',
-        'saldo'
+        'saldo',
     ];
-
-
-    
 }

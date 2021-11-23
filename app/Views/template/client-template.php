@@ -168,8 +168,16 @@
               </a>
 
             </li>
+
             <li class="nav-item">
-              <a href="./editarPerfil/<?php echo(session()->get('id'));?>" class="nav-link">
+              <a href="./ingresarSaldo" class="nav-link">
+                <i class="nav-icon fas fa-wallet"></i>
+                <p>Ingresar Saldo</p>
+              </a>
+            </li>
+
+            <li class="nav-item">
+              <a href="./editarPerfil/<?php echo (session()->get('id')); ?>" class="nav-link">
                 <i class="nav-icon fas fa-users-cog"></i>
                 <p>Administrar Perfil</p>
               </a>
