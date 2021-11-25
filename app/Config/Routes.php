@@ -69,6 +69,9 @@ $routes->get('consultaEstacionamiento', 'Inspectores::listarEstacionamiento');
 $routes->get('consultaEstacionamientoAdmin', 'Usuarios::listarEstacionamiento');
 $routes->get('altaVehiculo', 'Usuarios::altaVehiculo');
 $routes->get('ingresarSaldo', 'Usuarios::ingresarSaldo');
+$routes->get('miWallet', 'Usuarios::miWallet');
+$routes->get('tarjetaCredito', 'Usuarios::tarjetaCredito');
+
 $routes->get('desestacionarV', 'Usuarios::desestacionarV');
 $routes->get('desestacionarVehiculo/(:num)', 'Usuarios::desestacionarVehiculo/$1');
 $routes->get('estacionarIndefinido/(:num)', 'Usuarios::estacionarIndefinido/$1');

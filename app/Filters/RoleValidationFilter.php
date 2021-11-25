@@ -88,6 +88,8 @@ class RoleValidationFilter implements FilterInterface
             'precio',
             'ingresarSaldo',
             'cargarSaldo',
+            'miWallet',
+            'tarjetaCredito',
         ),
     );
     public $rol_no_puede = array(

@@ -170,9 +170,9 @@
             </li>
 
             <li class="nav-item">
-              <a href="./ingresarSaldo" class="nav-link">
+              <a href="./miWallet" class="nav-link">
                 <i class="nav-icon fas fa-wallet"></i>
-                <p>Ingresar Saldo</p>
+                <p>Billetera</p>
               </a>
             </li>
 

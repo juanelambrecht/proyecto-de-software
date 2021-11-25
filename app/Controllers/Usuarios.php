@@ -466,4 +466,18 @@ class Usuarios extends BaseController
         $cliente->update($clienteID, $data);
         return $this->response->redirect(site_url('/homeCliente'));
     }
+
+    public function miWallet()
+    {
+        $userSessionID = session()->get('id');
+        $cliente = new Cliente();
+        $datos['cliente'] = $cliente->where('usuario_id', $userSessionID)->first();
+        return view('usuarios/infoWallet', $datos);
+    }
+
+    public function tarjetaCredito()
+    {
+
+        return view('usuarios/tarjetaCredito');
+    }
 }
