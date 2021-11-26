@@ -297,7 +297,7 @@ class Usuarios extends BaseController
         ];
         $id = $this->request->getVar('id');
         $usuario->update($id, $datos);
-        print_r($id);
+       
         if ($id == 1) {
             return $this->response->redirect(site_url('./listar'));
         }
@@ -480,4 +480,17 @@ class Usuarios extends BaseController
 
         return view('usuarios/tarjetaCredito');
     }
+
+    public function listarMisVentas()
+    {
+        $userSessionID = session()->get('id');
+        $estadia = new Estadia();
+        $datos['estadias'] = $estadia->where('user_id', $userSessionID)->findAll();
+       $usuario = new Usuario();
+       $datos['usuario'] = $usuario->where('id', $userSessionID)->first();
+       $zona = new Zona();
+       $datos['zonas'] = $zona->orderBy('id', 'ASC')->findAll();
+        return view('usuarios/ListarMisVentas', $datos);
+    }
+
 }

@@ -78,7 +78,7 @@ $routes->get('estacionarIndefinido/(:num)', 'Usuarios::estacionarIndefinido/$1')
 $routes->get('estacionarPendiente/(:num)', 'Usuarios::estacionarPendiente/$1');
 $routes->get('editarPerfil/(:num)', 'Usuarios::editarPerfil/$1');
 $routes->get('altaInfraccion', 'Inspectores::altaInfraccion');
-
+$routes->get('listarMisVentas', 'usuarios::listarMisVentas');
 $routes->post('estacionarNuevoPendiente', 'Usuarios::estacionarNuevoPendiente');
 $routes->post('venderEstadiaIndefinido', 'Usuarios::venderEstadiaIndefinido');
 $routes->post('nuevaInfraccion', 'Inspectores::nuevaInfraccion');

@@ -63,7 +63,8 @@ class RoleValidationFilter implements FilterInterface
             'vendedor',
             'venderEstadia',
             'venderNuevaEstadia',
-            'intern-template'
+            'intern-template',
+            'listarMisVentas'
         ),
         // 4=> Cliente
         '4' => array(
