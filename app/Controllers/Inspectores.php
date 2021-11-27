@@ -10,26 +10,28 @@ class Inspectores extends BaseController
 {
     public function listarEstacionamiento()
     {
+        date_default_timezone_set("America/Argentina/Buenos_Aires");
         $now = date('Y-m-d');
         $estadia = new Estadia();
-        $datos['estadias'] = $estadia->where('fecha', $now)->findAll();
-        // $time = time();
-
-        // date("H:i:s", $time)
-        // || ( $estadia->hora_inicio >= date("H:i:s", $time) && $estadia->hora_fin== NULL)
-        // if( !empty($datos['estadiasDelDia'])){
-        //     foreach($datos['estadiasDelDia'] as $estadia){
-        //         if(date("H:i:s",$estadia->hora_inicio) >= date("H:i", $time) && date("H:i:s",$estadia->hora_fin) <= date("H:i:s", $time)){
-        //             $datos['estadias'] = $estadia;
-        //             print_r("entro al if");
-        //         }    
-        //         print_r(date("H:i",$estadia->hora_inicio));
-        //         print_r("--");
-        //         print_r(date("H:i", $time + 10800));
-        //     }
-        //     print_r($datos['estadias']);
-        // }
-        // No borrar por que puede servir.
+        $datos['estadiasDelDia'] = $estadia->where('fecha', $now)->findAll();
+        $time = time();
+        
+        
+        //|| ( $estadia->hora_inicio >= date("H:i:s", $time) && $estadia->hora_fin== NULL)
+        if( !empty($datos['estadiasDelDia'])){
+            foreach($datos['estadiasDelDia'] as $estadia){
+                $horaInicio = strtotime($estadia->hora_inicio); 
+                $horaFin = strtotime($estadia->hora_fin);
+                if( $horaInicio <= $time && $horaFin >= $time){
+                    print_r($estadia);
+                    die();
+                     array_push($datos['estadias'], $estadia);
+                }    
+               
+            }
+            
+        }
+    
 
         $usuario = new Usuario();
         $datos['usuarios'] = $usuario->orderBy('id', 'ASC')->findAll();
