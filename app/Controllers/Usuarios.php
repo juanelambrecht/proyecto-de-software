@@ -297,7 +297,7 @@ class Usuarios extends BaseController
         ];
         $id = $this->request->getVar('id');
         $usuario->update($id, $datos);
-       
+
         if ($id == 1) {
             return $this->response->redirect(site_url('./listar'));
         }
@@ -486,11 +486,46 @@ class Usuarios extends BaseController
         $userSessionID = session()->get('id');
         $estadia = new Estadia();
         $datos['estadias'] = $estadia->where('user_id', $userSessionID)->findAll();
-       $usuario = new Usuario();
-       $datos['usuario'] = $usuario->where('id', $userSessionID)->first();
-       $zona = new Zona();
-       $datos['zonas'] = $zona->orderBy('id', 'ASC')->findAll();
+        $usuario = new Usuario();
+        $datos['usuario'] = $usuario->where('id', $userSessionID)->first();
+        $zona = new Zona();
+        $datos['zonas'] = $zona->orderBy('id', 'ASC')->findAll();
         return view('usuarios/ListarMisVentas', $datos);
     }
 
+    public function misEstadiasPendientes()
+    {
+        $userSessionID = session()->get('id');
+        // $cliente = new Cliente();
+        // $datos['cliente'] = $cliente->where('usuario_id', $userSessionID)->first();
+        // $clienteInfo = $datos['cliente'];
+        // $vehiculo = new Vehiculo();
+        // $datos['vehiculos'] = $vehiculo->where('cliente_id', $clienteInfo['cliente_id'])->orderBy('vehiculo_id', 'ASC')->findAll();
+        // $vehiculosCliente = $datos['vehiculos'];
+        $estadias = new Estadia();
+        $array = array('user_id' => $userSessionID, 'pesosTotal <' => 0);
+        $datos['estadias'] = $estadias->where($array)->orderBy('fecha', 'ASC')->findAll();
+        // $estadiasSinPagar = $datos['estadias'];
+        // print_r($estadiasSinPagar);
+        // die();
+        return view('usuarios/estadiasPendientes', $datos);
+    }
+
+    public function pagarEstadia($id = null)
+    {
+        $userSessionID = session()->get('id');
+        $cliente = new Cliente();
+        $clienteInfo = $cliente->where('usuario_id', $userSessionID)->first();
+        $clienteID = $clienteInfo['cliente_id'];
+        $estadia = new Estadia();
+        $estadiaInfo = $estadia->where('id', $id)->first();
+        $clienteNuevoSaldo = $clienteInfo['saldo'] + $estadiaInfo->pesosTotal;
+        $dataCliente = ['saldo' =>  $clienteNuevoSaldo];
+        $dataEstadia = ['pesosTotal' => ($estadiaInfo->pesosTotal * -1)];
+
+        $estadia->update($id, $dataEstadia);
+        $cliente->update($clienteID, $dataCliente);
+
+        return $this->response->redirect(site_url('/homeCliente'));
+    }
 }

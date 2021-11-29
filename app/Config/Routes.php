@@ -71,6 +71,8 @@ $routes->get('altaVehiculo', 'Usuarios::altaVehiculo');
 $routes->get('ingresarSaldo', 'Usuarios::ingresarSaldo');
 $routes->get('miWallet', 'Usuarios::miWallet');
 $routes->get('tarjetaCredito', 'Usuarios::tarjetaCredito');
+$routes->get('misEstadiasPendientes', 'Usuarios::misEstadiasPendientes');
+$routes->get('pagarEstadia/(:num)', 'Usuarios::pagarEstadia/$1');
 
 $routes->get('desestacionarV', 'Usuarios::desestacionarV');
 $routes->get('desestacionarVehiculo/(:num)', 'Usuarios::desestacionarVehiculo/$1');
