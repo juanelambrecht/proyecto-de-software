@@ -5,6 +5,7 @@ namespace App\Controllers;
 use App\Models\Estadia;
 use App\Models\Cliente;
 use App\Models\Vehiculo;
+use App\Models\Tarjetas;
 // use CodeIgniter\Controller;
 use App\Models\Usuario;
 use App\Models\Rol;
@@ -16,6 +17,7 @@ use App\Models\Zona;
 
 class Usuarios extends BaseController
 {
+    var $saldoMinimoNegativoEnBilletera = -500;
 
     public function index()
     {
@@ -447,8 +449,13 @@ class Usuarios extends BaseController
 
     public function ingresarSaldo()
     {
+        $userSessionID = session()->get('id');
+        $cliente = new Cliente();
+        $clienteInfo = $cliente->where('usuario_id', $userSessionID)->first();
+        $tarjeta = new Tarjetas();
+        $info['tarjeta'] = $tarjeta->where('cliente_id', $clienteInfo['cliente_id'])->first();
 
-        return view('usuarios/ingresarSaldo');
+        return view('usuarios/ingresarSaldo', $info);
     }
 
     public function cargarSaldo($id = null)
@@ -461,6 +468,7 @@ class Usuarios extends BaseController
         //calculo nuevo saldo
         $saldoIngresado = $this->request->getVar('monto');
         $saldoTotal = ($saldoIngresado + $datos['saldo']);
+
         $data = ['saldo' => $saldoTotal];
         //updateo cliente con nuevo saldo
         $cliente->update($clienteID, $data);
@@ -477,8 +485,14 @@ class Usuarios extends BaseController
 
     public function tarjetaCredito()
     {
+        $userSessionID = session()->get('id');
+        $cliente = new Cliente();
+        $clienteInfo = $cliente->where('usuario_id', $userSessionID)->first();
 
-        return view('usuarios/tarjetaCredito');
+        $tarjeta = new Tarjetas();
+        $tarjetaCliente['tarjeta'] = $tarjeta->where('cliente_id', $clienteInfo['cliente_id'])->first();
+
+        return view('usuarios/tarjetaCredito', $tarjetaCliente);
     }
 
     public function listarMisVentas()
@@ -520,12 +534,33 @@ class Usuarios extends BaseController
         $estadia = new Estadia();
         $estadiaInfo = $estadia->where('id', $id)->first();
         $clienteNuevoSaldo = $clienteInfo['saldo'] + $estadiaInfo->pesosTotal;
-        $dataCliente = ['saldo' =>  $clienteNuevoSaldo];
-        $dataEstadia = ['pesosTotal' => ($estadiaInfo->pesosTotal * -1)];
 
-        $estadia->update($id, $dataEstadia);
-        $cliente->update($clienteID, $dataCliente);
+        if ($clienteNuevoSaldo <= $this->saldoMinimoNegativoEnBilletera) {
+            session()->setFlashData('mensaje', 'error');
+            return redirect()->to('/misEstadiasPendientes');
+        } else {
+            $dataCliente = ['saldo' =>  $clienteNuevoSaldo];
+            $dataEstadia = ['pesosTotal' => ($estadiaInfo->pesosTotal * -1)];
 
-        return $this->response->redirect(site_url('/homeCliente'));
+            $estadia->update($id, $dataEstadia);
+            $cliente->update($clienteID, $dataCliente);
+
+            return $this->response->redirect(site_url('./homeCliente'));
+        }
+    }
+
+    public function creditCardEdit($id = null)
+    {
+        $userSessionID = session()->get('id');
+        $cliente = new Cliente();
+        $clienteInfo = $cliente->where('usuario_id', $userSessionID)->first();
+        $datos = [
+            'numero' => $this->request->getVar('num'),
+            'fecha_ven' => $this->request->getVar('f_ven'),
+            'cod_seguridad' => $this->request->getVar('cod_seg'),
+        ];
+        $tarjeta = new Tarjetas();
+        $tarjeta->update($clienteInfo['cliente_id'], $datos);
+        return $this->response->redirect(site_url('/miWallet'));
     }
 }

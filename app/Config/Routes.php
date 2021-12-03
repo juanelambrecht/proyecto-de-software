@@ -94,6 +94,6 @@ $routes->post('venderNuevaEstadia', 'Vendedor::venderNuevaEstadia');
 $routes->post('comprarNuevaEstadia', 'Usuarios::estacionarGuardaVehiculo');
 $routes->post('actualizarPerfil', 'Usuarios::actualizarPerfil');
 $routes->post('cargarSaldo', 'Usuarios::cargarSaldo');
-
+$routes->post('creditCardEdit', 'Usuarios::creditCardEdit');
 
 $routes->get('precio', 'EstadiaController::precio');

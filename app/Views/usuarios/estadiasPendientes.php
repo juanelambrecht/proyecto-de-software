@@ -1,5 +1,20 @@
 <?= $this->extend('template/client-template'); ?>
 <?= $this->section('content'); ?>
+
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+  <?php if (session()->getFlashData('mensaje')) { ?>
+    Swal.fire({
+      icon: 'error',
+      title: 'Excedio el monto mínimo.',
+      text: 'Por favor, cargar mas saldo.',
+      //   footer: '<a href="#registro">Todavia no se encuentra registrado?</a>'
+    })
+
+  <?php } ?>
+</script>
+
+
 <section class="content">
   <br>
   <div class="container-fluid">

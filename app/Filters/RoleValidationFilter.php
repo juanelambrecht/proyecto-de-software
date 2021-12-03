@@ -92,7 +92,8 @@ class RoleValidationFilter implements FilterInterface
             'miWallet',
             'tarjetaCredito',
             'misEstadiasPendientes',
-            'pagarEstadia'
+            'pagarEstadia',
+            'creditCardEdit'
         ),
     );
     public $rol_no_puede = array(
