@@ -554,13 +554,29 @@ class Usuarios extends BaseController
         $userSessionID = session()->get('id');
         $cliente = new Cliente();
         $clienteInfo = $cliente->where('usuario_id', $userSessionID)->first();
-        $datos = [
-            'numero' => $this->request->getVar('num'),
-            'fecha_ven' => $this->request->getVar('f_ven'),
-            'cod_seguridad' => $this->request->getVar('cod_seg'),
-        ];
+        $clienteID = $clienteInfo['cliente_id'];
         $tarjeta = new Tarjetas();
-        $tarjeta->update($clienteInfo['cliente_id'], $datos);
+        $tarjetaCliente['tarjeta'] = $tarjeta->where('cliente_id', $clienteID)->first();
+        if ($tarjetaCliente['tarjeta'] == null) {
+            // hago un insert
+            $datosI = [
+                'cliente_id' => $clienteID,
+                'numero' => $this->request->getVar('num'),
+                'fecha_ven' => $this->request->getVar('f_ven'),
+                'cod_seguridad' => $this->request->getVar('cod_seg'),
+            ];
+            $tarjeta->insert($datosI);
+        } else {
+            // hago un update
+            $datosU = [
+                'numero' => $this->request->getVar('num'),
+                'fecha_ven' => $this->request->getVar('f_ven'),
+                'cod_seguridad' => $this->request->getVar('cod_seg'),
+            ];
+
+            $tarjeta->update($tarjetaCliente['tarjeta']['id'], $datosU);
+        }
+
         return $this->response->redirect(site_url('/miWallet'));
     }
 }
