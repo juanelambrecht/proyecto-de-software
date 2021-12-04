@@ -422,7 +422,47 @@ class Usuarios extends BaseController
         $datos['estadias'] = $estadia->where($array)->findAll();
         return view('usuarios/desestacionar', $datos);
     }
+    public function listadoEstadiaAdmin(){
+        $estadia = new Estadia();
+        $datos['estadias'] = $estadia->orderBy('id','ASC')->FindAll();
+        return view('usuarios/listadoEstadiaAdmin',$datos);
+    }
+    public function editarEstadia($id = null){
 
+        $estadia = new Estadia();
+        $datos['estadias'] = $estadia->where('id', $id)-> first();
+       
+        $zona = new Zona();
+        $datos['zonas'] = $zona->orderBy('id', 'ASC')->findAll();
+        return view('usuarios/editarEstadia',$datos);
+    }
+    public function actualizarEstadia(){
+        // hora actual en la cual se desestaciona => hora_fin de la estadia
+        date_default_timezone_set("America/Argentina/Buenos_Aires");
+        $nowtime = date("H:i:s");
+        $estadia = new Estadia();
+        $datos = $estadia->where('id', $this->request->getVar('id'))->first();
+
+       
+        // hora inicio de la estadia y hora fin
+        $horaInicio = $this->request->getVar('horaInicio');
+        $horaFin = $this->request->getVar('horaFin');
+        // Calculo el tiempo en horas, redondeando para arriba
+        $hrs = round(((strtotime($horaFin) - strtotime($horaInicio)) / 60) / 60, 0);
+        // Busco el precio de la zona 
+        $zona = new Zona();
+        $precioHoraZona = $zona->where('id', $this->request->getVar('zona'))->first();
+        // Calculo el precio a pagar
+        $pesosTotal = (($precioHoraZona['costo_horario'] * $hrs) );
+        $datos1 = [
+            'hora_inicio' => $horaInicio,
+            'hora_fin' => $horaFin,
+            'pesosTotal' => $pesosTotal,
+            'zona_id' => $this->request->getVar('zona'),
+        ];
+        $estadia->update($this->request->getVar('id'), $datos1);
+        return $this->response->redirect(site_url('/listadoEstadiaAdmin'));
+    }
     public function desestacionarVehiculo($id = null)
     {
         // hora actual en la cual se desestaciona => hora_fin de la estadia

@@ -157,6 +157,12 @@
                 </p>
               </a>
             </li>
+            <li class="nav-item">
+              <a href="./listadoEstadiaAdmin" class="nav-link">
+                <i class="nav-icon fas fa-list-alt"></i>
+                <p>Listado Estadia</p>
+              </a>
+            </li>
          <!--    <li class="nav-item">
               <a href="./venderEstadiaAdmin" class="nav-link">
                 <i class="nav-icon fas fa-cart-arrow-down"></i>

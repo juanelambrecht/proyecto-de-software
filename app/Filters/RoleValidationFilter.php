@@ -38,7 +38,10 @@ class RoleValidationFilter implements FilterInterface
             'consultaEstacionamientoAdmin',
             'editarPerfil',
             'intern-template',
-            'actualizarPerfil'
+            'actualizarPerfil',
+            'listadoEstadiaAdmin',
+            'editarEstadia',
+            'actualizarEstadia'
         ),
         // 2=> Inspector
         '2' => array(
