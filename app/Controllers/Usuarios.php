@@ -9,6 +9,7 @@ use App\Models\Tarjetas;
 // use CodeIgniter\Controller;
 use App\Models\Usuario;
 use App\Models\Rol;
+use App\Models\Horario;
 use App\Models\Zona;
 //use Date;
 // use DateInterval;
@@ -422,46 +423,49 @@ class Usuarios extends BaseController
         $datos['estadias'] = $estadia->where($array)->findAll();
         return view('usuarios/desestacionar', $datos);
     }
-    public function listadoEstadiaAdmin(){
-        $estadia = new Estadia();
-        $datos['estadias'] = $estadia->orderBy('id','ASC')->FindAll();
-        return view('usuarios/listadoEstadiaAdmin',$datos);
-    }
-    public function editarEstadia($id = null){
-
-        $estadia = new Estadia();
-        $datos['estadias'] = $estadia->where('id', $id)-> first();
+    public function listadoZonaAdmin(){
+        $zonas = new Zona();
+        $datos['zonas'] = $zonas->orderBy('id','ASC')->FindAll();
        
-        $zona = new Zona();
-        $datos['zonas'] = $zona->orderBy('id', 'ASC')->findAll();
-        return view('usuarios/editarEstadia',$datos);
+        $horario = new Horario();
+        $datos['horarios'] = $horario->orderBy('id','ASC')->FindAll();
+        
+        return view('usuarios/listadoZonaAdmin',$datos);
     }
-    public function actualizarEstadia(){
-        // hora actual en la cual se desestaciona => hora_fin de la estadia
-        date_default_timezone_set("America/Argentina/Buenos_Aires");
-        $nowtime = date("H:i:s");
-        $estadia = new Estadia();
-        $datos = $estadia->where('id', $this->request->getVar('id'))->first();
+    public function editarZona($id = null){
 
-       
-        // hora inicio de la estadia y hora fin
-        $horaInicio = $this->request->getVar('horaInicio');
-        $horaFin = $this->request->getVar('horaFin');
-        // Calculo el tiempo en horas, redondeando para arriba
-        $hrs = round(((strtotime($horaFin) - strtotime($horaInicio)) / 60) / 60, 0);
-        // Busco el precio de la zona 
         $zona = new Zona();
-        $precioHoraZona = $zona->where('id', $this->request->getVar('zona'))->first();
-        // Calculo el precio a pagar
-        $pesosTotal = (($precioHoraZona['costo_horario'] * $hrs) );
-        $datos1 = [
-            'hora_inicio' => $horaInicio,
-            'hora_fin' => $horaFin,
-            'pesosTotal' => $pesosTotal,
-            'zona_id' => $this->request->getVar('zona'),
+        $datos['zonas'] = $zona->where('id', $id)-> first();
+       
+        return view('usuarios/editarZona',$datos);
+    }
+    public function actualizarZona(){
+ 
+        $zonas = new Zona();
+        $datos = $zonas->where('id', $this->request->getVar('id'))->first();
+        
+       
+        $datos2= [
+            'costo_horario' => $this->request->getVar('costo'),
         ];
-        $estadia->update($this->request->getVar('id'), $datos1);
-        return $this->response->redirect(site_url('/listadoEstadiaAdmin'));
+        $zonas->update($this->request->getVar('id'),$datos2);
+
+        $horaInicioAm = $this->request->getVar('horaInicioAm');
+        $horaFinAm = $this->request->getVar('horaFinAm');
+        $horaInicioPm = $this->request->getVar('horaInicioPm');
+        $horaFinPm = $this->request->getVar('horaFinPm');
+        
+        $horario = new Horario();
+        $horarioN = $horario->where('id', $datos['horarios_id'])->first();
+        
+        $datos1 = [
+            'hora_inicio_am' => $horaInicioAm,
+            'hora_fin_am' => $horaFinAm,
+            'hora_inicio_pm' => $horaInicioPm,
+            'hora_fin_pm' => $horaFinPm,
+        ];
+        $horario->update($horarioN['id'], $datos1);
+        return $this->response->redirect(site_url('/listadoZonaAdmin'));
     }
     public function desestacionarVehiculo($id = null)
     {

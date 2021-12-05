@@ -39,9 +39,9 @@ class RoleValidationFilter implements FilterInterface
             'editarPerfil',
             'intern-template',
             'actualizarPerfil',
-            'listadoEstadiaAdmin',
-            'editarEstadia',
-            'actualizarEstadia'
+            'listadoZonaAdmin',
+            'editarZona',
+            'actualizarZona'
         ),
         // 2=> Inspector
         '2' => array(

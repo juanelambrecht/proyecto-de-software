@@ -158,9 +158,9 @@
               </a>
             </li>
             <li class="nav-item">
-              <a href="./listadoEstadiaAdmin" class="nav-link">
+              <a href="./listadoZonaAdmin" class="nav-link">
                 <i class="nav-icon fas fa-list-alt"></i>
-                <p>Listado Estadia</p>
+                <p>Listado Zona</p>
               </a>
             </li>
          <!--    <li class="nav-item">
