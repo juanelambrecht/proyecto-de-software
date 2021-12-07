@@ -86,6 +86,7 @@ $routes->post('estacionarNuevoPendiente', 'Usuarios::estacionarNuevoPendiente');
 $routes->post('venderEstadiaIndefinido', 'Usuarios::venderEstadiaIndefinido');
 $routes->post('nuevaInfraccion', 'Inspectores::nuevaInfraccion');
 
+$routes->post('registrar','Usuarios::registrar');
 $routes->post('guardar', 'Usuarios::guardar');
 $routes->post('actualizar', 'Usuarios::actualizar');
 $routes->post('altaNuevoVehiculo', 'Usuarios::altaNuevoVehiculo');

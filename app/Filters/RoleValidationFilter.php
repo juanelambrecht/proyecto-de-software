@@ -18,6 +18,8 @@ class RoleValidationFilter implements FilterInterface
         'error/403',
         'welcome_message',
         '/errors/error_403',
+        'registrar',
+        'home-template',
     );
     // 1 => Admin // 2=> Inspector, // 3=> Vendedor, // 4=> Cliente
     public $rol_permisos = array(

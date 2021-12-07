@@ -238,7 +238,33 @@ class Usuarios extends BaseController
         }
         return $this->response->redirect(site_url('/listar'));
     }
+    public function registrar()
+    {
 
+        $usuario = new Usuario();
+        $cliente = new Cliente();
+        $datosU = [
+            'nombre' => $this->request->getVar('nombre'),
+            'email' => $this->request->getVar('email'),
+            'apellido' => $this->request->getVar('apellido'),
+            'username' => $this->request->getVar('usuario'),
+            'dni' => $this->request->getVar('dni'),
+            'fecha_nacimiento' => $this->request->getVar('fecha_nacimiento'),
+            'contraseña' => $this->request->getVar('contraseña'),
+            'id_rol' => $this->request->getVar('rol')
+        ];
+        $usuario->insert($datosU);
+
+        if ($this->request->getVar('rol') == 4) {
+            $idUsuario = $usuario->where('username', $this->request->getVar('usuario'))->first();
+            $datosC = [
+                'usuario_id' => $idUsuario->id,
+                'saldo' => 200
+            ];
+            $cliente->insert($datosC);
+        }
+        return $this->response->redirect(site_url('/login'));
+    }
     public function borrar($id = null)
     {
         $usuario = new Usuario();
