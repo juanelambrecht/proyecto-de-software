@@ -159,8 +159,14 @@
             </li>
             <li class="nav-item">
               <a href="./listadoEstadiaAdmin" class="nav-link">
-                <i class="nav-icon fas fa-list-alt"></i>
+                <i class="nav-icon fas fa-map-marked-alt"></i>
                 <p>Listado Estadia</p>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="./listarInfracciones" class="nav-link">
+                <i class="nav-icon fas fa-exclamation-circle"></i>
+                <p>Listado Infracciones</p>
               </a>
             </li>
          <!--    <li class="nav-item">

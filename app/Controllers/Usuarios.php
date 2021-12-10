@@ -10,6 +10,7 @@ use App\Models\Tarjetas;
 use App\Models\Usuario;
 use App\Models\Rol;
 use App\Models\Zona;
+use App\Models\Infraccion;
 //use Date;
 // use DateInterval;
 // use CodeIgniter\I18n\Time;
@@ -619,4 +620,12 @@ class Usuarios extends BaseController
 
         return $this->response->redirect(site_url('/miWallet'));
     }
+
+    public function listarInfracciones()
+    {
+        $infracciones = new Infraccion();
+        $datos['infracciones'] = $infracciones->orderBy('infraccion_id', 'ASC')->findAll();
+        return view('usuarios/listarInfracciones', $datos);
+    }
+
 }
