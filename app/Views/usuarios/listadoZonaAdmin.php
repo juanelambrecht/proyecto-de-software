@@ -28,15 +28,14 @@
                               <th class="sorting sorting_asc" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending">
                                 #</th>
                               <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="">
-                                Patente</th>
+                                Descripcion</th>
                               <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="">
-                                Fecha</th>
+                                Ubicacion</th>
                               <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="">
-                                Hora Inicio</th>
+                                Hora AM</th>
                               <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="">
-                                Hora Fin</th>
-                              <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="">
-                                Zona</th>
+                                Hora PM</th>
+                              
                               <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="">
                                 Costo</th>
                               <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1" colspan="1" aria-label="">
@@ -44,18 +43,33 @@
                             </tr>
                           </thead>
                           <tbody>
-                          <?php foreach ($estadias as $estadia) : ?>
+                          <?php foreach ($zonas as $zona) : ?>
                               <tr class="odd">
-                                <td><?= $estadia->id; ?></td>
-                                <td><?= $estadia->patente; ?></td>
-                                <td><?= $estadia->fecha; ?></td>
-                                <td><?= $estadia->hora_inicio; ?></td>
-                                <td><?= $estadia->hora_fin; ?></td>
-                                <td><?= $estadia->zona_id; ?></td>
-                                <td><?= $estadia->pesosTotal; ?></td>
+                                <td><?= $zona['id'];?></td>
+                                <td><?= $zona['descripcion'] ?></td>
+                                <td><?= $zona['ubicacion_id'] ?></td>
+                                <td><?php foreach ($horarios as $horario ):  
+                                              if($zona['horarios_id'] == $horario['id']){
+                                                  echo "hora inicio: ". $horario['hora_inicio_am'] ."<br>";
+                                                  echo "hora fin: ". $horario['hora_fin_am'];
+                                              }
+                                  
+                                        endforeach; ?>
                                 
+                                </td>
+                                <td><?php foreach ($horarios as $horario ): 
+                                              if($zona['horarios_id'] == $horario['id']){
+                                                echo "hora inicio: ". $horario['hora_inicio_pm'] ."<br>";
+                                                echo "hora fin: ". $horario['hora_fin_pm'];
+                                              }
+                                  
+                                        endforeach; ?>
+                                
+                                </td>
+
+                                <td><?= $zona['costo_horario']; ?></td>            
                                 <td>
-                                  <a href="<?= base_url('editarEstadia/' . $estadia->id); ?>" class="btn btn-outline-secondary"><i class="fa fa-edit"></i></a>
+                                  <a href="<?= base_url('editarZona/' . $zona['id']); ?>" class="btn btn-outline-secondary"><i class="fa fa-edit"></i></a>
                                 </td>
 
                               </tr>

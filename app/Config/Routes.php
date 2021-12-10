@@ -73,7 +73,7 @@ $routes->get('miWallet', 'Usuarios::miWallet');
 $routes->get('tarjetaCredito', 'Usuarios::tarjetaCredito');
 $routes->get('misEstadiasPendientes', 'Usuarios::misEstadiasPendientes');
 $routes->get('pagarEstadia/(:num)', 'Usuarios::pagarEstadia/$1');
-$routes->get('listadoEstadiaAdmin','Usuarios::listadoEstadiaAdmin');
+$routes->get('listadoZonaAdmin','Usuarios::listadoZonaAdmin');
 
 $routes->get('desestacionarV', 'Usuarios::desestacionarV');
 $routes->get('desestacionarVehiculo/(:num)', 'Usuarios::desestacionarVehiculo/$1');
@@ -87,13 +87,14 @@ $routes->post('estacionarNuevoPendiente', 'Usuarios::estacionarNuevoPendiente');
 $routes->post('venderEstadiaIndefinido', 'Usuarios::venderEstadiaIndefinido');
 $routes->post('nuevaInfraccion', 'Inspectores::nuevaInfraccion');
 
+$routes->post('registrar','Usuarios::registrar');
 $routes->post('guardar', 'Usuarios::guardar');
 $routes->post('actualizar', 'Usuarios::actualizar');
 $routes->post('altaNuevoVehiculo', 'Usuarios::altaNuevoVehiculo');
 $routes->post('venderNuevaEstadiaAdmin', 'Usuarios::venderEstadiaAdmin');
 $routes->post('venderNuevaEstadia', 'Vendedor::venderNuevaEstadia');
-$routes->get('editarEstadia/(:num)', 'Usuarios::editarEstadia/$1');
-$routes->post('actualizarEstadia','Usuarios::actualizarEstadia');
+$routes->get('editarZona/(:num)', 'Usuarios::editarZona/$1');
+$routes->post('actualizarZona','Usuarios::actualizarZona');
 
 $routes->post('comprarNuevaEstadia', 'Usuarios::estacionarGuardaVehiculo');
 $routes->post('actualizarPerfil', 'Usuarios::actualizarPerfil');

@@ -90,7 +90,7 @@
       <div class="container" data-aos="fade-up">
 
         <div class="section-title">
-          <h2>Registrarse</h2>
+          <a href="#registro"><h2>Registrarse</h2></a>
         </div>
 
         <div class="row mt-1">
@@ -114,33 +114,39 @@
 
           <div class="col-lg-8 mt-5 mt-lg-0">
 
-            <form action="forms/contact.php" method="post" role="form" class="php-email-form">
-              <div class="row">
-                <div class="col-md-6 form-group">
-                  <input type="text" name="name" class="form-control" id="name" placeholder="Ingrese su nombre" required>
-                </div>
-                <div class="col-md-6 form-group mt-3 mt-md-0">
-                  <input type="text" class="form-control" name="apellido" id="apellido" placeholder="Ingrese su apellido" required>
-                </div>
-              </div>
-              <div class="form-group mt-3">
-                <input type="email" class="form-control" name="email" id="email" placeholder="Ingrese su email" required>
-                
-              </div>
-              <div class="form-group mt-3">
-              <input type="text" class="form-control" name="username" id="username" placeholder="Ingrese su nombre de Usuario" required>
+          <div class="col-md-8">
+        <form class="was-validated" action="<?= site_url('/registrar') ?>" method="post">
+
+            <div class="mb-3">
+                <label for="usuario" class="form-label">Usuario</label>
+                <input type="text" class="form-control" name="usuario" required>
             </div>
-              <div class="my-3">
-                <div class="loading">Loading</div>
-                <div class="error-message"></div>
-                <div class="sent-message">Tu registro se realizo de manera correcta</div>
-              </div>
-              <div class="text-center"><button type="submit">Enviar</button></div>
-            </form>
+            <div class="mb-3">
+                <label for="contraseña" class="form-label">Contraseña</label>
+                <input type="password" class="form-control" name="contraseña" required>
+            </div>
+            
+            <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" name="email" required>
+            </div>
+            <div class="mb-3">
+                <label for="dni" class="form-label">DNI</label>
+                <input type="text" class="form-control" name="dni" required>
+            </div>
+            
+            <div class="input-group mb-3">
+            <input type="hidden" name="rol" value="4">
 
+
+            </div>
+            <br>
+            <a href="home-template.php"><button type="submit" class="btn btn-primary">Enviar</button></a>
+        </form>
+        <br>
+    </div>
+          
           </div>
-
-        </div>
 
       </div>
     </section><!-- End Contact Section -->
