@@ -13,6 +13,33 @@
 
 <?php } ?>
     </script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+  <?php if (session()->getFlashData('registerOK')) { ?>
+    Swal.fire({
+      icon: 'exito',
+      title: 'Registrado con exito!',
+      text: 'Ya puedes ingresar',
+      //   footer: '<a href="#registro">Todavia no se encuentra registrado?</a>'
+    })
+
+  <?php } ?>
+</script>
+
+</script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+  <?php if (session()->getFlashData('registerFail')) { ?>
+    Swal.fire({
+      icon: 'error',
+      title: 'Intente otra vez.',
+      text: 'Ya existe un usuario',
+      //   footer: '<a href="#registro">Todavia no se encuentra registrado?</a>'
+    })
+
+  <?php } ?>
+</script>
+
 <div class="container">
   <br><br>
   <section class="vh-100">

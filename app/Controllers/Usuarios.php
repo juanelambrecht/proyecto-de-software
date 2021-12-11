@@ -168,16 +168,39 @@ class Usuarios extends BaseController
         // Creo la estadia
         $estadia = new Estadia();
         $now = date('Y-m-d');
-        $datos = [
-            'user_id' => $userSessionID,
-            'patente' => $this->request->getVar('patente'),
-            'fecha' => $now,
-            'hora_inicio' => $this->request->getVar('hora_inicio'),
-            'hora_fin' => NULL,
-            'pesosTotal' => 0,
-            'zona_id' => $this->request->getVar('zona')
-        ];
-        $estadia->insert($datos);
+
+        $datos2= array('fecha' => $now, 'patente' => $this->request->getVar('patente'));
+        $datos['estadiasDelDia'] = $estadia->where($datos2)->findAll();
+        if( !empty($datos['estadiasDelDia'])){
+            foreach($datos['estadiasDelDia'] as $estadiaN){
+                $horaInicio = strtotime($estadiaN->hora_inicio); 
+                $horaFin = strtotime($estadiaN->hora_fin);
+                $horaInicioA= strtotime($this->request->getVar('hora_inicio'));
+                
+                if( ($horaInicioA <= $horaFin) || ( $horaFin <= $horaInicioA  && $horaFin <= $horaFinA)){
+                    $datos = [
+                        'user_id' => $userSessionID,
+                        'patente' => $this->request->getVar('patente'),
+                        'fecha' => $now,
+                        'hora_inicio' => $this->request->getVar('hora_inicio'),
+                        'hora_fin' => NULL,
+                        'pesosTotal' => 0,
+                        'zona_id' => $this->request->getVar('zona')
+                    ];
+                    $estadia->insert($datos);
+                //2-null
+                //  3-null x     3-5
+                // verificar si hay una indefinida ya creada indefinida 
+                // y si hay una creada y esta con hora fin verificar la hora de inicio que no este entre horas
+                } else{
+                    session()->setFlashData('estacionarFail','error');
+                } 
+ 
+               
+            }
+            
+        }
+       
         return $this->response->redirect(site_url('/homeCliente'));
     }
     public function estacionarGuardaVehiculo()
@@ -187,27 +210,48 @@ class Usuarios extends BaseController
         // Creo la estadia
         $estadia = new Estadia();
         $now = date('Y-m-d');
-        $datos = [
-            'user_id' => $userSessionID,
-            'patente' => $this->request->getVar('patente'),
-            'fecha' => $now,
-            'hora_inicio' => $this->request->getVar('hora_inicio'),
-            'hora_fin' => $this->request->getVar('hora_fin'),
-            'pesosTotal' => 0,
-            'zona_id' => $this->request->getVar('zona')
-        ];
-        $horaInicio = strtotime($datos['hora_inicio']);
-        $horaFin = strtotime($datos['hora_fin']);
-        // Calculo el tiempo en horas, redondeando para arriba
-        $hrs = round((($horaFin - $horaInicio) / 60) / 60, 0);
-        // Busco el precio de la zona 
-        $zona = new Zona();
-        $precioHoraZona = $zona->where('id', $datos['zona_id'])->first();
-        // Calculo el precio a pagar
-        $pesosTotal = ($precioHoraZona['costo_horario'] * $hrs);
-        // Inserto el nuevo precio 
-        $newData = array_merge($datos, array("pesosTotal" => $pesosTotal));
-        $estadia->insert($newData);
+        $datos2= array('fecha' => $now, 'patente' => $this->request->getVar('patente'));
+        $datos['estadiasDelDia'] = $estadia->where($datos2)->findAll();
+     
+        if( !empty($datos['estadiasDelDia'])){
+            foreach($datos['estadiasDelDia'] as $estadiaN){
+                $horaInicio = strtotime($estadiaN->hora_inicio); 
+                $horaFin = strtotime($estadiaN->hora_fin);
+                $horaInicioA= strtotime($this->request->getVar('hora_inicio'));
+                $horaFinA= strtotime($this->request->getVar('hora_fin'));
+                if( ($horaInicioA < $horaInicio && $horaFinA <= $horaInicio) || ( $horaFin <= $horaInicioA  && $horaFin <= $horaFinA)){
+                    $datos = [
+                        'user_id' => $userSessionID,
+                        'patente' => $this->request->getVar('patente'),
+                        'fecha' => $now,
+                        'hora_inicio' => $this->request->getVar('hora_inicio'),
+                        'hora_fin' => $this->request->getVar('hora_fin'),
+                        'pesosTotal' => 0,
+                        'zona_id' => $this->request->getVar('zona')
+                    ];
+                    $horaInicio = strtotime($datos['hora_inicio']);
+                    $horaFin = strtotime($datos['hora_fin']);
+                    // Calculo el tiempo en horas, redondeando para arriba
+                    $hrs = round((($horaFin - $horaInicio) / 60) / 60, 0);
+                    // Busco el precio de la zona 
+                    $zona = new Zona();
+                    $zonaArray = $zona->where('id', $datos['zona_id'])->first();
+                    // Calculo el precio a pagar
+                    $pesosTotal = ($zonaArray['costo_horario'] * $hrs);
+                    // Inserto el nuevo precio 
+                    $newData = array_merge($datos, array("pesosTotal" => $pesosTotal));
+                    $estadia->insert($newData);
+                
+                } else{
+                    session()->setFlashData('estacionarFail','error');
+                } 
+ 
+               
+            }
+            
+        }
+
+
         return $this->response->redirect(site_url('/estacionarVehiculo'));
     }
 
@@ -253,15 +297,27 @@ class Usuarios extends BaseController
             'contraseña' => $this->request->getVar('contraseña'),
             'id_rol' => $this->request->getVar('rol')
         ];
-        $usuario->insert($datosU);
+        
 
-        if ($this->request->getVar('rol') == 4) {
-            $idUsuario = $usuario->where('username', $this->request->getVar('usuario'))->first();
-            $datosC = [
-                'usuario_id' => $idUsuario->id,
-                'saldo' => 200
-            ];
-            $cliente->insert($datosC);
+       
+        $usuarioEncontrado= $usuario->where('username',$this->request->getVar('usuario'))->first();
+        
+        if(!empty($usuarioEncontrado)){
+            
+            session()->setFlashData('registerFail','error');
+        }
+        else{
+            $usuario->insert($datosU);
+            if ($this->request->getVar('rol') == 4) {
+                $idUsuario = $usuario->where('username', $this->request->getVar('usuario'))->first();
+                $datosC = [
+                    'usuario_id' => $idUsuario->id,
+                    'saldo' => 200
+                ];
+                $cliente->insert($datosC);
+            }
+            
+            session()->setFlashData('registerOK','exito');
         }
         return $this->response->redirect(site_url('/login'));
     }

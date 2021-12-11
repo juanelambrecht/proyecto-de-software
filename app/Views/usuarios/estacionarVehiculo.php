@@ -1,7 +1,19 @@
 <?= $this->extend('template/client-template'); ?>
 <?= $this->section('content'); ?>
 
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    
+  <?php if (session()->getFlashData('estacionarFail')) { ?>
+    Swal.fire({
+      icon: 'exito',
+      title: 'Fallo el estacionar',
+      text: 'verifique los horarios.',
+      //   footer: '<a href="#registro">Todavia no se encuentra registrado?</a>'
+    })
 
+  <?php } ?>
+</script>
 
 <div class="row justify-content-md-center">
     <div class="col-md-8">

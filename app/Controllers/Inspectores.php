@@ -14,25 +14,28 @@ class Inspectores extends BaseController
         $now = date('Y-m-d');
         $estadia = new Estadia();
         $datos['estadiasDelDia'] = $estadia->where('fecha', $now)->findAll();
+        $datos1['estadias']=[];
         $time = time();
         
-        
-        //|| ( $estadia->hora_inicio >= date("H:i:s", $time) && $estadia->hora_fin== NULL)
+
         if( !empty($datos['estadiasDelDia'])){
-            foreach($datos['estadiasDelDia'] as $estadia){
-                $horaInicio = strtotime($estadia->hora_inicio); 
-                $horaFin = strtotime($estadia->hora_fin);
-                if( $horaInicio <= $time && $horaFin >= $time){
-                    print_r($estadia);
-                    die();
-                     array_push($datos['estadias'], $estadia);
+            foreach($datos['estadiasDelDia'] as $estadiaN){
+                $horaInicio = strtotime($estadiaN->hora_inicio); 
+                $horaFin = strtotime($estadiaN->hora_fin);
+                if( ($horaInicio <= $time && $horaFin >= $time) || ( $horaInicio <= $time && $estadiaN->hora_fin== NULL)){
+                    
+                     array_push($datos1['estadias'], $estadiaN);
                 }    
                
             }
             
         }
+        else
+        {
+            $datos['estadias'] = $estadia->where('fecha', $now)->findAll();
+        }
     
-
+        $datos['estadias']= $datos1['estadias'];
         $usuario = new Usuario();
         $datos['usuarios'] = $usuario->orderBy('id', 'ASC')->findAll();
         return view('inspectores/consultaEstacionamiento', $datos);
