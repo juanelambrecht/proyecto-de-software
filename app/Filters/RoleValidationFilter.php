@@ -32,6 +32,7 @@ class RoleValidationFilter implements FilterInterface
             'guardar',
             'listar',
             'venderEstadiaAdmin',
+            'listarInfracciones',
             'venderNuevaEstadiaAdmin',
             'editar',
             'crear',
