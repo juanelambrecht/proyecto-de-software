@@ -576,21 +576,34 @@ class Usuarios extends BaseController
         // hora actual en la cual se desestaciona => hora_fin de la estadia
         date_default_timezone_set("America/Argentina/Buenos_Aires");
         $nowtime = date("H:i:s");
+        $horaNoche = date("23:59:59");
+        $now = date('Y-m-d');
         $estadia = new Estadia();
         $datos = $estadia->where('id', $id)->first();
         // hora inicio de la estadia
         $horaInicio = $datos->hora_inicio;
-        // Calculo el tiempo en horas, redondeando para arriba
-        $hrs = round(((strtotime($nowtime) - strtotime($horaInicio)) / 60) / 60, 0);
+        $fechaEstadia = $datos->fecha;
         // Busco el precio de la zona 
         $zona = new Zona();
         $precioHoraZona = $zona->where('id', $datos->zona_id)->first();
-        // Calculo el precio a pagar
-        $pesosTotal = (($precioHoraZona['costo_horario'] * $hrs) * -1);
         $datos1 = [
             'hora_fin' => $nowtime,
-            'pesosTotal' => $pesosTotal,
         ];
+        // Calculo el tiempo en horas, redondeando para arriba
+        // Calculo el precio a pagar
+        if ($now > $fechaEstadia) {
+            # se paso de dia, cobrarle hasta las 23:59
+            $hrs = round(((strtotime($horaNoche) - strtotime($horaInicio)) / 60) / 60, 0);
+            $pesosTotal = (($precioHoraZona['costo_horario'] * $hrs) * -1);
+            $datos1['pesosTotal'] = $pesosTotal;
+        } else {
+            # cobrarle las horas hasta que finaliza la estadia
+            $hrs = round(((strtotime($nowtime) - strtotime($horaInicio)) / 60) / 60, 0);
+            $pesosTotal = (($precioHoraZona['costo_horario'] * $hrs) * -1);
+            $datos1['pesosTotal'] = $pesosTotal;
+        }
+        // $hrs = round(((strtotime($nowtime) - strtotime($horaInicio)) / 60) / 60, 0);
+
         $estadia->update($id, $datos1);
         return $this->response->redirect(site_url('/homeCliente'));
     }
