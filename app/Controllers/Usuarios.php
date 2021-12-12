@@ -592,7 +592,7 @@ class Usuarios extends BaseController
         // Calculo el tiempo en horas, redondeando para arriba
         // Calculo el precio a pagar
         if ($now > $fechaEstadia) {
-            # se paso de dia, cobrarle hasta las 23:59
+            # se paso de dia, cobrarle hasta las 23:59 del dia de la estadia
             $hrs = round(((strtotime($horaNoche) - strtotime($horaInicio)) / 60) / 60, 0);
             $pesosTotal = (($precioHoraZona['costo_horario'] * $hrs) * -1);
             $datos1['pesosTotal'] = $pesosTotal;
