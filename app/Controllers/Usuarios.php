@@ -182,13 +182,12 @@ class Usuarios extends BaseController
                 if ($estadiaN->hora_fin == null) {
                     # si ya hay una estadia con hora fin null, no se deberia poder vender otra indefinida
                     # mostrar msj que ya existe una una estadia indefinida para esa patente..
-                    print_r('no puede estacionar otra indefinida');
-                    die();
+                    session()->setFlashData('ventaFail', 'error');
+                    // print_r('no puede estacionar otra indefinida');
+                    // die();
                 } elseif ($horaInicioA < $horaInicio || $horaInicioA >= $horaFin) {
                     # si la hora inicio creada está antes o despues que la estadia (entre horas) en la bd,
                     # se puede estacionar
-                    print_r('puede estacionar');
-                    die();
                     $datos = [
                         'user_id' => $userSessionID,
                         'patente' => $this->request->getVar('patente'),
@@ -199,16 +198,31 @@ class Usuarios extends BaseController
                         'zona_id' => $this->request->getVar('zona')
                     ];
                     $estadia->insert($datos);
+                    session()->setFlashData('ventaOk', 'error');
+                    // print_r('puede estacionar');
+                    // die();
                 } else {
                     # hora inicio creada entre horas
-                    print_r('no puede estacionar.. hora inicio choca');
-                    die();
+                    session()->setFlashData('ventaFailHoras', 'error');
+                    // print_r('no puede estacionar.. hora inicio choca');
+                    // die();
                 }
             }
         } else {
             # no se encontraron estadias.. puede estacionar
-            print_r('puede estacionar');
-            die();
+            $datos = [
+                'user_id' => $userSessionID,
+                'patente' => $this->request->getVar('patente'),
+                'fecha' => $now,
+                'hora_inicio' => $this->request->getVar('hora_inicio'),
+                'hora_fin' => NULL,
+                'pesosTotal' => 0,
+                'zona_id' => $this->request->getVar('zona')
+            ];
+            $estadia->insert($datos);
+            session()->setFlashData('ventaOk', 'error');
+            // print_r('puede estacionar');
+            // die();
         }
 
         return $this->response->redirect(site_url('/homeCliente'));

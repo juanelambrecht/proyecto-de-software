@@ -8,7 +8,6 @@
       icon: 'error',
       title: 'Excedio el monto mínimo.',
       text: 'Por favor, cargar mas saldo.',
-      //   footer: '<a href="#registro">Todavia no se encuentra registrado?</a>'
     })
 
   <?php } ?>
