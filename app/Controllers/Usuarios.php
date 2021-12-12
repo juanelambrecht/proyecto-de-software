@@ -602,8 +602,6 @@ class Usuarios extends BaseController
             $pesosTotal = (($precioHoraZona['costo_horario'] * $hrs) * -1);
             $datos1['pesosTotal'] = $pesosTotal;
         }
-        // $hrs = round(((strtotime($nowtime) - strtotime($horaInicio)) / 60) / 60, 0);
-
         $estadia->update($id, $datos1);
         return $this->response->redirect(site_url('/homeCliente'));
     }
@@ -671,18 +669,9 @@ class Usuarios extends BaseController
     public function misEstadiasPendientes()
     {
         $userSessionID = session()->get('id');
-        // $cliente = new Cliente();
-        // $datos['cliente'] = $cliente->where('usuario_id', $userSessionID)->first();
-        // $clienteInfo = $datos['cliente'];
-        // $vehiculo = new Vehiculo();
-        // $datos['vehiculos'] = $vehiculo->where('cliente_id', $clienteInfo['cliente_id'])->orderBy('vehiculo_id', 'ASC')->findAll();
-        // $vehiculosCliente = $datos['vehiculos'];
         $estadias = new Estadia();
         $array = array('user_id' => $userSessionID, 'pesosTotal <' => 0);
         $datos['estadias'] = $estadias->where($array)->orderBy('fecha', 'ASC')->findAll();
-        // $estadiasSinPagar = $datos['estadias'];
-        // print_r($estadiasSinPagar);
-        // die();
         return view('usuarios/estadiasPendientes', $datos);
     }
 
