@@ -49,11 +49,12 @@
                           <?php foreach ($infracciones as $infraccion) : ?>
                               <tr class="odd">
 
-                                <td><?= $infraccion->infraccion_id; ?></td>
-                                <td><?= $infraccion->dia; ?></td>
-                                <td><?= $infraccion->callle; ?></td>
-                                <td><?= $infraccion->calle_altura; ?></td>
-                                <td><?= $infraccion->patente; ?></td>
+                                <td><?= $infraccion['infraccion_id']; ?></td>
+                                <td><?= $infraccion['dia']; ?></td>
+                                <td><?= $infraccion['hora']; ?></td>
+                                <td><?= $infraccion['calle']; ?></td>
+                                <td><?= $infraccion['calle_altura']; ?></td>
+                                <td><?= $infraccion['patente']; ?></td>
                               </tr>
                             <?php endforeach; ?>
 
