@@ -66,9 +66,32 @@ class Vendedor extends BaseController
                 } 
  
                
-            }
+                }
             
-        }
+            }else{
+                $datos = [
+                    'user_id' => $userSessionID,
+                    'patente' => $this->request->getVar('patente'),
+                    'fecha' => $now,
+                    'hora_inicio' => $this->request->getVar('hora_inicio'),
+                    'hora_fin' => $this->request->getVar('hora_fin'),
+                    'pesosTotal' => 0,
+                    'zona_id' => $this->request->getVar('zona')
+                ];
+                $horaInicio = strtotime($datos['hora_inicio']);
+                $horaFin = strtotime($datos['hora_fin']);
+                // Calculo el tiempo en horas, redondeando para arriba
+                $hrs = round((($horaFin - $horaInicio) / 60) / 60, 0);
+                // Busco el precio de la zona 
+                $zona = new Zona();
+                $zonaArray = $zona->where('id', $datos['zona_id'])->first();
+                // Calculo el precio a pagar
+                $pesosTotal = ($zonaArray['costo_horario'] * $hrs);
+                // Inserto el nuevo precio 
+                $newData = array_merge($datos, array("pesosTotal" => $pesosTotal));
+                $estadia->insert($newData);
+
+            }
     
         return $this->response->redirect(site_url('/venderEstadia'));
     }
