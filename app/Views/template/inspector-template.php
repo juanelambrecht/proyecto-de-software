@@ -152,7 +152,7 @@
 
             <li class="nav-item">
               <a href="./consultaEstacionamiento" class="nav-link">
-                <i class="nav-icon fas fa-car"></i>
+                <i class="nav-icon fas fa-parking"></i>
                 <p>
                   Consulta Estación
                 </p>
@@ -160,7 +160,7 @@
               </li>
               <li class="nav-item">
               <a href="./altaInfraccion" class="nav-link">
-                <i class="nav-icon fas fa-car"></i>
+                <i class="nav-icon fas fa-car-crash"></i>
                 <p>
                   Alta Infraccion
                 </p>
