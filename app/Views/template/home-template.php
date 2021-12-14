@@ -132,7 +132,7 @@
             </div>
             <div class="mb-3">
                 <label for="dni" class="form-label">DNI</label>
-                <input type="text" class="form-control" name="dni" required>
+                <input type="text" class="form-control" name="dni" pattern="^([0-9]{8})?$" required>
             </div>
             
             <div class="input-group mb-3">
